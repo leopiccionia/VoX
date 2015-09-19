@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
     $usuario = $_POST['cadastro_usuario'];
     $email = $_POST['cadastro_email'];
@@ -38,17 +39,31 @@
         $erro_preenchimento = true;
         array_push($mensagem_erro, 'Senhas não batem.');
     }
-
-    if($erro_preenchimento){
-        echo '<p>Um ou mais erros encontrados:</p><ul>';
-        foreach($mensagem_erro as $erro){
-            echo '<li>' .$erro .'</li>';
-        }
-        echo '</ul>';
-        echo '<p>Retorne à <a href="index.php">página anterior</a> para corrigir os erros.</p>';
-    }
-    else{
-        /* Cadastrar */
-        echo '<p>Sucesso, filhão!</p>';
-    }
+    
 ?>
+<html>
+<head>
+	<title>VoX</title>
+	<?php require 'assets/header.php' ?>
+</head>
+<body>
+    <?php include 'assets/navbar.php' ?>
+    <div class="container main-container">
+        <?php
+            if($erro_preenchimento){
+                echo '<h1>Cadastro mal-sucedido</h1>';
+                echo '<p>Um ou mais erros encontrados:</p><ul>';
+                foreach($mensagem_erro as $erro){
+                    echo '<li>' .$erro .'</li>';
+                }
+                echo '</ul>';
+                echo '<div class="alert alert-danger">Retorne à <a href="index.php">página anterior</a> para corrigir os erros.</div>';
+            }
+            else{
+                echo '<h1>Cadastro bem-sucedido</h1>';
+                echo '<p>Seu cadastro foi completado com sucesso. Use a barra superior para navegar no site.</p>';
+            }
+        ?> 
+    </div>
+</body>
+</html>

@@ -14,6 +14,19 @@ body{
     font-size: 500%;
 }
 
+.main-container{
+    background-color: white;
+    min-height: 50%;
+}
+
+.container-fluid{
+    background-color: #337AB7; /* same color as btn-primary */
+}
+
+.container-fluid a{
+    color: white !important;
+}
+
 .login{
     text-align: center;
     margin: auto;
