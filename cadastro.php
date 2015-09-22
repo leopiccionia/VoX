@@ -20,12 +20,12 @@
     else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $erro_preenchimento = true;
         array_push($mensagem_erro, 'E-mail inválido.');
-    }
+    }  
     else{
         $config_file = file_get_contents("assets/public.json");
         $config_json = json_decode($config_file, true);
         $allow_domain = $config_json['config']['allow_domain'];
-        if($allow_domain != explode('@', $email)[1]){
+        if(!empty($allow_domain) && $allow_domain != explode('@', $email)[1]){
             $erro_preenchimento = true;
             array_push($mensagem_erro, 'E-mail não pertence ao domínio "' .$allow_domain .'".');
         }
@@ -47,7 +47,7 @@
 	<?php require 'assets/header.php' ?>
 </head>
 <body>
-    <?php include 'assets/navbar.php' ?>
+    <?php require 'assets/navbar.php' ?>
     <div class="container main-container">
         <?php
             if($erro_preenchimento){
