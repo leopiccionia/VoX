@@ -49,21 +49,19 @@
 <body>
     <?php require 'assets/navbar.php' ?>
     <div class="container main-container">
-        <?php
-            if($erro_preenchimento){
-                echo '<h1>Cadastro mal-sucedido</h1>';
-                echo '<p>Um ou mais erros encontrados:</p><ul>';
-                foreach($mensagem_erro as $erro){
-                    echo '<li>' .$erro .'</li>';
-                }
-                echo '</ul>';
-                echo '<div class="alert alert-danger">Retorne à <a href="index.php">página anterior</a> para corrigir os erros.</div>';
-            }
-            else{
-                echo '<h1>Cadastro bem-sucedido</h1>';
-                echo '<p>Seu cadastro foi completado com sucesso. Use a barra superior para navegar no site.</p>';
-            }
-        ?> 
+        <?php if($erro_preenchimento): ?>
+            <h1>Cadastro mal-sucedido</h1>
+            <p>Um ou mais erros encontrados:</p>
+            <ul>
+                <?php foreach($mensagem_erro as $erro): ?>
+                    <li><?= $erro ?></li>
+                <?php endforeach; ?>
+            </ul>
+            <div class="alert alert-danger">Retorne à <a href="index.php">página anterior</a> para corrigir os erros.</div>
+        <?php else: ?>
+            <h1>Cadastro bem-sucedido</h1>
+            <p>Seu cadastro foi completado com sucesso. Use a barra superior para navegar no site.</p>
+        <?php endif; ?>
     </div>
 </body>
 </html>

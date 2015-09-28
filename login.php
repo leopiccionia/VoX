@@ -51,21 +51,21 @@
             catch(Exception $erro){
                 echo '<div class="alert alert-danger">Erro: ' . $erro->getMessage() .'.</div>';
                 $erro_login = true;
-                
             }
             finally{
                 $conexao->mysql_close();
-                if($erro_login){
-                    echo '<div class="container main-container">'
-                    .'<h1>Erro de login</h1>'
-                    .'<p>Não foi possível completar o login no sistema. Para tentar novamente, retorne à <a href="index.php">página anterior</a>.</p>'
-                    .'</div>';
-                }
-                else{
-                    header('Location: home.php');
-                    die();
-                }
             }
+        ?>
+        
+        <?php if($erro_login): ?>
+            <div class="container main-container">
+                <h1>Erro de login</h1>
+                <p>Não foi possível completar o login no sistema. Para tentar novamente, retorne à <a href="index.php">página anterior</a>.</p>
+            </div>
+        <?php else:
+            header('Location: home.php');
+            die();
+        elseif;
         ?>  
     </body>
 </html>
