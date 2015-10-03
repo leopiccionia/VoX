@@ -39,7 +39,6 @@
         $erro_preenchimento = true;
         array_push($mensagem_erro, 'Senhas não batem.');
     }
-    
 ?>
 <html>
 <head>
