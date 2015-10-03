@@ -1,39 +1,39 @@
 body{
-    background-color: #99D1FF;
+	background-color: #99D1FF;
 }
 
 .jumbotron{
-    color: white;
-    background-color: #337AB7; /* same color as btn-primary */
-    margin-top: 5%;
-    text-align: center;
-    vertical-align: middle;
+	color: white;
+	background-color: #337AB7; /* same color as btn-primary */
+	margin-top: 5%;
+	text-align: center;
+	vertical-align: middle;
 }
 
 .jumbotron h1{
-    font-size: 500%;
+	font-size: 500%;
 }
 
 .main-container{
-    background-color: white;
-    min-height: 50%;
+	background-color: white;
+	min-height: 50%;
 }
 
 .container-fluid{
-    background-color: #337AB7; /* same color as btn-primary */
+	background-color: #337AB7; /* same color as btn-primary */
 }
 
 .container-fluid a{
-    color: white !important;
+	color: white !important;
 }
 
 .login{
-    text-align: center;
-    margin: auto;
+	text-align: center;
+	margin: auto;
 }
 
 .login input{
-    text-align: center;
-    margin :auto;
-    width: 300px;
+	text-align: center;
+	margin :auto;
+	width: 300px;
 }
