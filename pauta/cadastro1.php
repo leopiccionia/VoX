@@ -1,13 +1,16 @@
 <?php
     require '../helpers/persistencia.php';
+    require '../helpers/validacao/pauta.php';
     
-    $titulo = $_POST['titulo'];
-    $descricao = $_POST['descricao'];
-    $data_inicio = $_POST['data_inicio'];
-    $data_fim = $_POST['data_fim'];
+    require '../controllers/pauta.php';
+    
+    $pauta = new Pauta($_POST['titulo'], $_POST['descricao'], $_POST['data_inicio'], $_POST['data_fim']);
+    
+    
+    
     
     $autor = $_SESSION['id'];
-    cadastraVotacao($titulo, $descricao, $data_inicio, $data_fim);
+    cadastrarVotacao($titulo, $descricao, $data_inicio, $data_fim);
 ?>
 
 CREATE TABLE votacao(

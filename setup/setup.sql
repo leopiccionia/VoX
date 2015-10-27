@@ -17,26 +17,25 @@ CREATE TABLE usuario(
         R - removido
 */
 
-CREATE TABLE votacao(
-    votacao_id INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE pauta(
+    pauta_id INT NOT NULL AUTO_INCREMENT,
     autor_id INT NOT NULL,
     titulo VARCHAR(100) NOT NULL,
     descricao TEXT,
     data_criacao TIMESTAMP() NOT NULL,
     data_inicio TIMESTAMP() NOT NULL,
     data_fim TIMESTAMP() NOT NULL,
-    abstencoes INT NOT NULL,
-    PRIMARY KEY(votacao_id),
+    PRIMARY KEY(pauta_id),
     FOREIGN KEY(autor_id) REFERENCES usuario(usuario_id)
 );
 
-CREATE TABLE opcao_votacao(
+CREATE TABLE opcao_pauta(
     opcao_id INT NOT NULL AUTO_INCREMENT,
-    votacao_id INT NOT NULL,
+    pauta_id INT NOT NULL,
     titulo VARCHAR(100) NOT NULL,
     descricao TEXT,
     PRIMARY KEY(opcao_id),
-    FOREIGN KEY(votacao_id) REFERENCES votacao(votacao_id)
+    FOREIGN KEY(pauta_id) REFERENCES pauta(pauta_id)
 );
 
 CREATE TABLE comentario(
@@ -55,7 +54,16 @@ CREATE TABLE voto(
     opcao_id INT NOT NULL,
     PRIMARY KEY(voto_id),
     FOREIGN KEY(usuario_id) REFERENCES usuario(usuario_id),
-    FOREIGN KEY(opcao_id) REFERENCES opcao_votacao(opcao_id)
+    FOREIGN KEY(opcao_id) REFERENCES opcao_pauta(opcao_id)
+);
+
+CREATE TABLE abstencao(
+    abstencao_id INT NOT NULL AUTO_INCREMENT,
+    usuario_id INT NOT NULL,
+    pauta_id INT NOT NULL,
+    PRIMARY KEY(abstencao_id),
+    FOREIGN KEY(usuario_id) REFERENCES usuario(usuario_id),
+    FOREIGN KEY(pauta_id) REFERENCES pauta(pauta_id)
 );
 
 /*

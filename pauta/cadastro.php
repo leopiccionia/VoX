@@ -5,7 +5,7 @@
 		<?php require '../assets/header.php' ?>
 	</head>
 	<body>
-        <form action="nova1.php" method="post">
+        <form action="cadastro1.php" method="post">
             <div class="form-group">
                 <label for="titulo">Título [obrigatório]</label>
                 <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Título da votação" required>
