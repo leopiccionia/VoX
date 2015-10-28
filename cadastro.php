@@ -10,16 +10,16 @@
 	
 	if(empty($usuario)){
 		$erro_preenchimento = true;
-		array_push($mensagem_erro, 'Nome de usuário em branco.');
+		$mensagem_erro = array_push($mensagem_erro, 'Nome de usuário em branco.');
 	}
 	
 	if(empty($email)){
 		$erro_preenchimento = true;
-		array_push($mensagem_erro, 'E-mail em branco.');
+		$mensagem_erro = array_push($mensagem_erro, 'E-mail em branco.');
 	}
 	else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 		$erro_preenchimento = true;
-		array_push($mensagem_erro, 'E-mail inválido.');
+		$mensagem_erro = array_push($mensagem_erro, 'E-mail inválido.');
 	}  
 	else{
 		$config_file = file_get_contents("assets/public.json");
@@ -27,18 +27,23 @@
 		$allow_domain = $config_json['config']['allow_domain'];
 		if(!empty($allow_domain) && $allow_domain != explode('@', $email)[1]){
 			$erro_preenchimento = true;
-			array_push($mensagem_erro, 'E-mail não pertence ao domínio "' .$allow_domain .'".');
+			$mensagem_erro = array_push($mensagem_erro, 'E-mail não pertence ao domínio "' .$allow_domain .'".');
 		}
 	}
 	
 	if(empty($senha) || empty($senha2)){
 		$erro_preenchimento = true;
-		array_push($mensagem_erro, 'Senha deve ser repetida.');
+		$mensagem_erro = array_push($mensagem_erro, 'Senha deve ser repetida.');
 	}
 	else if($senha != $senha2){
 		$erro_preenchimento = true;
-		array_push($mensagem_erro, 'Senhas não batem.');
+		$mensagem_erro = array_push($mensagem_erro, 'Senhas não batem.');
 	}
+
+	$erro_cadastro = false;
+	if(!$erro_preenchimento)
+		if(!cadastraUsuario($usuario, $email, $senha))
+			$mensagem_erro = array_push($mensagem_erro, 'Não foi possível completar cadastro.');
 ?>
 <html>
 <head>
@@ -48,7 +53,7 @@
 <body>
 	<?php require 'assets/navbar.php' ?>
 	<div class="container main-container">
-		<?php if($erro_preenchimento): ?>
+		<?php if($erro_preenchimento || $erro_cadastro): ?>
 			<h1>Cadastro mal-sucedido</h1>
 			<p>Um ou mais erros encontrados:</p>
 			<ul>
@@ -57,7 +62,7 @@
 				<?php endforeach; ?>
 			</ul>
 			<div class="alert alert-danger">Retorne à <a href="index.php">página anterior</a> para corrigir os erros.</div>
-		<?php else: ?>
+		<?php else:	?>
 			<h1>Cadastro bem-sucedido</h1>
 			<p>Seu cadastro foi completado com sucesso. Use a barra superior para navegar no site.</p>
 		<?php endif; ?>
