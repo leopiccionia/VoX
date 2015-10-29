@@ -5,9 +5,7 @@
     require '../controllers/pauta.php';
     
     $pauta = new Pauta($_POST['titulo'], $_POST['descricao'], $_POST['data_inicio'], $_POST['data_fim']);
-    
-    
-    
+    $erro_validacao = !$pauta->valida();
     
     $autor = $_SESSION['id'];
     cadastrarVotacao($titulo, $descricao, $data_inicio, $data_fim);

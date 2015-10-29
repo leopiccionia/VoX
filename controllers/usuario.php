@@ -56,7 +56,7 @@ class Usuario extends Controller{
         require_once 'helpers/persistencia.php';
         $hash_senha = sha1($senha .$nome);
 		try{
-			$conexao = mysqli_connect(db_servidor(), db_usuario(), db_senha());
+			$conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
 			return mysqli_query($conexao, "INSERT INTO usuario(nome, usuario, email, status) VALUES('$nome', '$email', '$hash_senha', 'C'");
 		}
 		catch(Exception $e){
@@ -73,7 +73,7 @@ class Usuario extends Controller{
     }
     
 	function loginPorEmail($email, $senha){
-		$conexao = mysqli_connect(db_servidor(), db_usuario(), db_senha());
+		$conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
 		$query = mysqli_query($conexao, "SELECT nome FROM usuario WHERE email = '$email' AND status = 'C'");
 
 		while($row = mysqli_fetch_array($query)){
@@ -92,7 +92,7 @@ class Usuario extends Controller{
 	}
 	
 	function loginPorNome($nome, $senha){
-		$conexao = mysqli_connect(db_servidor(), db_usuario(), db_senha());
+		$conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
 		$hash_senha = sha1($senha .$nome);
 		
 		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE nome = '" . $nome . "' AND senha = '" .$senha ."' AND status = 'C'");

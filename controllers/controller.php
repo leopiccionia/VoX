@@ -1,21 +1,16 @@
 <?php
 class Controller{
-    private function db_servidor(){
-        $db_file = file_get_contents("helpers/private.json");
-	    $db_json = json_decode($db_file, true);
-	    return $db_json['database']['server'];
-    }
     
-    private function db_servidor(){
-        $db_file = file_get_contents("helpers/private.json");
-	    $db_json = json_decode($db_file, true);
-	    return $db_json['database']['username'];
-    }
+    private $db_servidor;
+    private $db_usuario;
+    private $db_senha;
     
-    private function db_senha(){
-        $db_file = file_get_contents("helpers/private.json");
+    function __construct(){
+        $db_file = file_get_contents('assets/private.json');
 	    $db_json = json_decode($db_file, true);
-	    return $db_json['database']['password'];
+	    $this->$db_servidor = $db_json['database']['server'];
+	    $this->$db_usuario = $db_json['database']['username'];
+	    $this->$db_senha = $db_json['database']['password'];
     }
 }
 ?>

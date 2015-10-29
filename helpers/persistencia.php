@@ -1,5 +1,5 @@
 <?php
-	$db_file = file_get_contents('private.json');
+	$db_file = file_get_contents('../assets/private.json');
 	$db_json = json_decode($db_file, true);
 	
 	$db_servidor = $db_json['database']['server'];
