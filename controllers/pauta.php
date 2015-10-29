@@ -22,6 +22,5 @@ class Pauta extends Controller{
             return false;
         return true;
     }
-    
 }
 ?>

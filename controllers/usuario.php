@@ -52,7 +52,7 @@ class Usuario extends Controller{
     	return $mensagens_erro;
     }
     
-    private function cadastra(){
+    function cadastra(){
         require_once 'helpers/persistencia.php';
         $hash_senha = sha1($senha .$nome);
 		try{
@@ -63,5 +63,47 @@ class Usuario extends Controller{
 			return false;
 		}
     }
-}
+    
+    function login($credencial, $senha){
+        $this->$id = -1;
+		if(filter_var($credencial, FILTER_VALIDATE_EMAIL))
+			return loginPorEmail($credencial, $senha);
+		else
+			return loginPorNome($credencial, $senha);
+    }
+    
+	function loginPorEmail($email, $senha){
+		$conexao = mysqli_connect(db_servidor(), db_usuario(), db_senha());
+		$query = mysqli_query($conexao, "SELECT nome FROM usuario WHERE email = '$email' AND status = 'C'");
+
+		while($row = mysqli_fetch_array($query)){
+			$nome = $row['nome'];
+			$hash_senha = sha1($senha .$nome);
+		}
+		
+		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE email = '$email' AND senha = '$hash_senha'");
+		if($row = mysqli_fetch_array($query))
+			$this->$id = $row['usuario_id'];
+		
+		mysqli_close($conexao);
+		if($this->$id == -1)
+			return false;
+		return true;
+	}
+	
+	function loginPorNome($nome, $senha){
+		$conexao = mysqli_connect(db_servidor(), db_usuario(), db_senha());
+		$hash_senha = sha1($senha .$nome);
+		
+		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE nome = '" . $nome . "' AND senha = '" .$senha ."' AND status = 'C'");
+		if($row = mysqli_fetch_array($query))
+			$this->$id = $row['usuario_id'];
+
+		mysqli_close($conexao);
+		if($$this->id == -1)
+			return false;
+		return true;
+	}
+        
+    }
 ?>

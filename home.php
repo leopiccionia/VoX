@@ -1,11 +1,11 @@
-<!DOCTYPE html>
 <?php
-	if(empty($_SESSION['logado'])){
+	session_start();
+	if(!isset($_SESSION['usuario'])){
 		header('Location: /index.php');
 		die();
 	}
-	$id = $_SESSION['id'];
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>VoX</title>

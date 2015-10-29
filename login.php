@@ -1,3 +1,10 @@
+<?php
+	require_once 'controllers/usuario.php';
+
+	session_start();
+	$_SESSION['usuario'] = new Usuario();
+	$erro_login = !$_SESSION['usuario']->login($_POST['login_credencial'], $_POST['login_senha']);
+?>
 <!DOCTYPE html>
 <html>
 	<head>

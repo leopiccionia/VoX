@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>VoX</title>
-	<?php require 'assets/header.php' ?>
+	<?php require_once 'assets/header.php' ?>
 </head>
 <body>
 	<div class="container">
