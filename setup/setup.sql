@@ -22,9 +22,9 @@ CREATE TABLE pauta(
     autor_id INT NOT NULL,
     titulo VARCHAR(100) NOT NULL,
     descricao TEXT,
-    data_criacao TIMESTAMP() NOT NULL,
-    data_inicio TIMESTAMP() NOT NULL,
-    data_fim TIMESTAMP() NOT NULL,
+    data_criacao DATE() NOT NULL,
+    data_inicio DATE() NOT NULL,
+    data_fim DATE() NOT NULL,
     PRIMARY KEY(pauta_id),
     FOREIGN KEY(autor_id) REFERENCES usuario(usuario_id)
 );

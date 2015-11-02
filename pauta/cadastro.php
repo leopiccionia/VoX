@@ -1,35 +1,39 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['usuario'])){
+		header('Location: ../index.php');
+		die();
+	}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>VoX</title>
+		<title>VoX - Cadastro de pauta</title>
 		<?php require '../assets/header.php' ?>
 	</head>
 	<body>
-        <form action="cadastro1.php" method="post">
-            <div class="form-group">
-                <label for="titulo">Título [obrigatório]</label>
-                <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Título da votação" required>
-            </div>
-            <div class="form-group">
-                <label for="descricao">Descrição</label>
-                <textarea rows="4" id="titulo" name="titulo" class="form-control" placeholder="Descrição da votação"></textarea>
-            </div>
-        	<input type="submit" class="btn btn-primary" value="Entrar">
-        </form>
+	    <?php require 'assets/navbar.php' ?>
+    	<div class="container main-container">
+            <h1>Cadastro de pauta</h1>
+            <form action="cadastro1.php" method="post">
+                <div class="form-group">
+                    <label for="titulo">Título [obrigatório]</label>
+                    <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Título da votação" required />
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea rows="4" id="descricao" name="descricao" class="form-control" placeholder="Descrição da votação"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="data_inicio">Data de início</label>
+                    <input type="date" id="data_inicio" name="data_inicio" class="form-control" placeholder="YYYY-MM-DD" required />
+                </div>
+                <div class="form-group">
+                    <label for="data_fim">Data de fim</label>
+                    <input type="date" id="data_fim" name="data_fim" class="form-control" placeholder="YYYY-MM-DD" required />
+                </div>
+            	<input type="submit" class="btn btn-primary" value="Entrar">
+            </form>
+    	</div>
     </body>
 </html>
-
-<!--
-    CREATE TABLE votacao(
-        votacao_id INT NOT NULL AUTO_INCREMENT,
-        autor_id INT NOT NULL,
-        titulo VARCHAR(100) NOT NULL,
-        descricao TEXT,
-        data_criacao TIMESTAMP() NOT NULL,
-        data_inicio TIMESTAMP() NOT NULL,
-        data_fim TIMESTAMP() NOT NULL,
-        abstencoes INT NOT NULL,
-        PRIMARY KEY(votacao_id),
-        FOREIGN KEY(autor_id) REFERENCES usuario(usuario_id)
-    );
--->

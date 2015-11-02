@@ -23,5 +23,15 @@ class Pauta extends Controller{
             return false;
         return true;
     }
+    
+    function cadastra($autor_id){
+		try{
+			$conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
+			return mysqli_query($conexao, "INSERT INTO pauta(autor_id, titulo, descricao, data_criacao, data_inicio, data_fim) VALUES($autor_id, '$titulo', '$descricao', CURDATE(), '$data_inicio', '$data_fim')");
+		}
+		catch(Exception $e){
+			return false;
+		}
+    }
 }
 ?>

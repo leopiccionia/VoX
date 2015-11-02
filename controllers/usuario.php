@@ -57,7 +57,6 @@ class Usuario extends Controller{
     }
     
     function cadastra(){
-        require_once 'helpers/persistencia.php';
         $hash_senha = sha1($senha .$nome);
 		try{
 			$conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
