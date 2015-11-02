@@ -9,6 +9,7 @@ class Pauta extends Controller{
     public $data_fim;
         
     function __construct($titulo, $descricao, $data_inicio, $data_fim){
+        parent::__construct();
         $this->$titulo = mysql_real_escape_string($titulo);
         $this->$descricao = mysql_real_escape_string($descricao);
         $this->$data_inicio = strtotime($data_inicio);

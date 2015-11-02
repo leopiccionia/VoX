@@ -11,6 +11,10 @@ class Usuario extends Controller{
     private $senha;
     private $senha2;
 
+	public function __construct(){
+		parent::__construct();
+	}
+
     /* Retorna lista de erros */
     function valida(){
     	$mensagens_erro = array();
