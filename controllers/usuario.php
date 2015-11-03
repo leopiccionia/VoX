@@ -107,6 +107,18 @@ class Usuario extends Controller{
 			return false;
 		return true;
 	}
+	
+	static function nomeDoId($id){
+		$conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
+		$query = mysqli_connect($conexao, "SELECT nome FROM usuario WHERE usuario_id = $id");
+		if($row = mysqli_fetch_array($query)){
+			$nome = $row['nome'];
+			mysqli_close($conexao);
+			return $nome;	
+		}
+		mysqli_close($conexao);
+		return null;
+	}
         
-    }
+}
 ?>

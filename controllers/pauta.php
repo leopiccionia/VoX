@@ -1,19 +1,25 @@
 <?php
 require_once 'controller.php';
+require_once 'opcao_pauta.php';
 
 class Pauta extends Controller{
     
     public $titulo;
     public $descricao;
+    public $data_criacao;
     public $data_inicio;
     public $data_fim;
+    public $autor;
         
-    function __construct($titulo, $descricao, $data_inicio, $data_fim){
+    function __construct($titulo, $descricao, $data_inicio, $data_fim, $autor, $data_criacao = null){
         parent::__construct();
+        if($data_criacao == null)
+            $this->$data_criacao = time();
         $this->$titulo = mysql_real_escape_string($titulo);
         $this->$descricao = mysql_real_escape_string($descricao);
         $this->$data_inicio = strtotime($data_inicio);
         $this->$data_fim = strtotime($data_fim);
+        $this->$autor = $autor;
     }
     
     function valida(){
@@ -24,14 +30,28 @@ class Pauta extends Controller{
         return true;
     }
     
-    function cadastra($autor_id){
+    function cadastra(){
 		try{
 			$conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
-			return mysqli_query($conexao, "INSERT INTO pauta(autor_id, titulo, descricao, data_criacao, data_inicio, data_fim) VALUES($autor_id, '$titulo', '$descricao', CURDATE(), '$data_inicio', '$data_fim')");
+			return mysqli_query($conexao, "INSERT INTO pauta(autor_id, titulo, descricao, data_criacao, data_inicio, data_fim) VALUES($autor, '$titulo', '$descricao', CURDATE(), '$data_inicio', '$data_fim')");
 		}
 		catch(Exception $e){
 			return false;
 		}
+    }
+    
+    function opcoes(){
+        $opcoes = array();
+        $conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
+        $query = mysqli_query($conexao, "SELECT opcao_id, titulo, descricao FROM opcao_pauta WHERE pauta_id = $id");
+        while($row = mysqli_fetch_array($query)){
+            $opcao = new OpcaoPauta();
+            $opcao->$id = $row['id'];
+            $opcao->$titulo = $row['titulo'];
+            $opcao->$descricao = $row['descricao'];
+            array_push($opcoes, $opcao);
+        }
+        return $opcoes;
     }
 }
 ?>

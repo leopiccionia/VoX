@@ -44,9 +44,8 @@
 					<p>Não foi possível completar o login no sistema. Para tentar novamente, retorne à <a href="index.php">página anterior</a>.</p>
 				</div>
 			<?php else:
-				header('Location: home.php');
+				header('Location: /home.php');
 				die();
-			endif;
-		?>  
+			endif; ?>  
 	</body>
 </html>
