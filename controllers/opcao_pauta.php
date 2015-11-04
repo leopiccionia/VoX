@@ -6,5 +6,9 @@
         public $titulo;
         public $descricao;
         public $pauta;
+        
+        public function __construct(){
+            parent::__construct();
+        }
     }
 ?>

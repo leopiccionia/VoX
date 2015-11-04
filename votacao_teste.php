@@ -23,7 +23,7 @@
     	    <h1><?= $pauta->$titulo ?></h1>
     	    <p style="font-size: large;"><?= $pauta->$titulo ?></p>
     	    <p>Pauta criada por <?= Usuario::nomeDoId($pauta->$autor) ?> em <?= date_format($pauta->$data_criacao, 'd/m/Y') ?>.</p>
-    	    <form action="voto.php" method="post">
+    	    <form action="votacao1.php" method="post">
     	        <h2>Opções</h2>
     	        <input type="hidden" name="votacao" id="votacao" value="<?= $pauta->$id ?>" />
     	        <?php foreach($opcoes as $opcao): ?>
