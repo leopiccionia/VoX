@@ -3,10 +3,15 @@
 	echo '1';
 
 	session_start();
+	echo '2';
 	$usuario = new Usuario();
+	echo '3';
 	$usuario->$nome = mysql_real_escape_string($_POST['cadastro_usuario']);
+	echo '4';
 	$usuario->$email = mysql_real_escape_string($_POST['cadastro_email']);
+	echo '5';
 	$usuario->$senha = $_POST['cadastro_senha'];
+	echo '6';
 	$usuario->$senha2 = $_POST['cadastro_senha2'];
 
 	echo '2';
