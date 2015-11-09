@@ -1,5 +1,6 @@
 <?php
 	require_once '../controllers/usuario.php';
+	echo '1';
 
 	session_start();
 	$usuario = new Usuario();
@@ -8,6 +9,8 @@
 	$usuario->$senha = $_POST['cadastro_senha'];
 	$usuario->$senha2 = $_POST['cadastro_senha2'];
 
+	echo '2';
+
 	$mensagens_erro = array();
 	array_push($mensagens_erro, $usuario->valida());
 	if(!isset($mensagens_erro))
@@ -15,7 +18,10 @@
 	if($erro_cadastro)
 		array_push($mensagens_erro, 'Não foi possível realizar cadastro.');
 	
+	echo '3';
+	
 	$_SESSION['usuario'] = $usuario;
+	echo '4';
 ?>
 <!DOCTYPE html>
 <html>
