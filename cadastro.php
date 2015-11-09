@@ -1,10 +1,11 @@
 <?php
-	require_once 'controllers/usuario.php';
+	require_once 'usuario.php';
 	echo '1';
 
 	session_start();
 	echo '2';
 	$usuario = new Usuario();
+	var_dump($usuario);
 	echo '3';
 	$usuario->$nome = mysql_real_escape_string($_POST['cadastro_usuario']);
 	echo '4';
