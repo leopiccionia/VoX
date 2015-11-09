@@ -1,0 +1,52 @@
+[X] SQL
+
+SPRINT 01:
+
+William: 
+
+    Debuggar Login
+    Debuggar Cadastro de usuário
+    Debuggar Página de cadastro de pauta
+
+Leonardo P.
+
+    [ ] Cadastro de votação com opções
+    [ ] Página de votação
+        [ ] Escolha de opção
+
+Leonardo S.
+
+    Documentação
+    
+Marcelo 
+
+    Documentação
+
+
+
+
+
+
+
+
+TAREFAS A SEREM FEITAS
+
+Debuggar o que já está feito:
+    
+    Debuggar Login - W
+    Debuggar Cadastro de usuário  - W
+    Debuggar Página de cadastro de pauta  - W
+    
+    
+Implementar novas funcionalidades    
+    
+[ ] Home do usuário
+[ ] Cadastro de votação com opções
+[ ] Página de votação
+    [ ] Escolha de opção
+    [ ] Envio de comentários - DEPOIS
+[ ] Ata automática
+
+
+
+Status: 4/8 
