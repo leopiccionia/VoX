@@ -8,7 +8,7 @@
 
 	function votacoesCriadas($id){
 		$conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
-		$query = mysqli_query($conexao, "SELECT * FROM votacao WHERE autor_id = '" .$id ."'");
+		$query = mysqli_query($conexao, "SELECT * FROM votacao WHERE autor_id = '$id'");
 		$resultado = array();
 		while($row = mysqli_fetch_array())
 			array_push($resultado, $row);

@@ -22,9 +22,9 @@ CREATE TABLE pauta(
     autor_id INT NOT NULL,
     titulo VARCHAR(100) NOT NULL,
     descricao TEXT,
-    data_criacao DATE() NOT NULL,
-    data_inicio DATE() NOT NULL,
-    data_fim DATE() NOT NULL,
+    data_criacao DATE NOT NULL,
+    data_inicio DATE NOT NULL,
+    data_fim DATE NOT NULL,
     PRIMARY KEY(pauta_id),
     FOREIGN KEY(autor_id) REFERENCES usuario(usuario_id)
 );
@@ -61,6 +61,7 @@ CREATE TABLE abstencao(
     abstencao_id INT NOT NULL AUTO_INCREMENT,
     usuario_id INT NOT NULL,
     pauta_id INT NOT NULL,
+    data TIMESTAMP NOT NULL,
     PRIMARY KEY(abstencao_id),
     FOREIGN KEY(usuario_id) REFERENCES usuario(usuario_id),
     FOREIGN KEY(pauta_id) REFERENCES pauta(pauta_id)
