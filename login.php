@@ -1,5 +1,5 @@
 <?php
-	require_once 'controllers/usuario.php';
+	require_once 'usuario.php';
 
 	session_start();
 	$_SESSION['usuario'] = new Usuario();
