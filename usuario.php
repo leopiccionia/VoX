@@ -35,7 +35,7 @@ class Usuario extends Controller{
         $mensagem_erro = array();
         if(empty($email))
             array_push($mensagem_erro, 'E-mail em branco.');
-    	else if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+    	elseif(!filter_var($email, FILTER_VALIDATE_EMAIL))
     		array_push($mensagem_erro, 'E-mail inválido.');
     	else{
     		$config_file = file_get_contents("../assets/public.json");
@@ -51,7 +51,7 @@ class Usuario extends Controller{
         $mensagens_erro = array();
         if(empty($senha) || empty($senha2))
     		array_push($mensagens_erro, 'Senha deve ser repetida.');
-    	else if($senha != $senha2)
+    	elseif($senha != $senha2)
     		array_push($mensagens_erro, 'Senhas não batem.');
     	return $mensagens_erro;
     }
