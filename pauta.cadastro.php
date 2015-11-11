@@ -9,7 +9,7 @@
 <html>
 	<head>
 		<title>VoX - Cadastro de pauta</title>
-		<?php require '../assets/header.php' ?>
+		<?php require 'assets/header.php' ?>
 	</head>
 	<body>
 	    <?php require 'assets/navbar.php' ?>

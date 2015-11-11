@@ -5,6 +5,7 @@
 		</div>
 		<div>
 			<ul class="nav navbar-nav navbar-right">
+				<li><a href="pauta.cadastro.php">Nova pauta</a></li>
 				<li><a href="conta.php">Minha conta</a></li>
 			</ul>
 		</div>

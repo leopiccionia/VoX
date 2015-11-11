@@ -1,18 +1,20 @@
 <?php
 	session_start();
 	if(!isset($_SESSION['usuario'])){
-		header('Location: ../index.php');
+		header('Location: index.php');
 		die();
 	}
 
-    require '../controllers/pauta.php';
+    require_once '/pauta.php';
     
     $pauta = new Pauta($_POST['titulo'], $_POST['descricao'], $_POST['data_inicio'], $_POST['data_fim']);
     $erro_validacao = false;
     $erro_cadastro = false;
     if($pauta->valida()){
-        if($pauta->cadastra($_SESSION['usuario']->$id)){
-            header('Location: ../index.php');
+        $pauta_id = $pauta->cadastra($_SESSION['usuario']->$id);
+        if($pauta_id > 0){
+            $_SESSION['pauta'] = $pauta_id;
+            header('Location: opcao_pauta.cadastro.php');
             die();
         }
         else
@@ -25,7 +27,7 @@
 <html>
 	<head>
 		<title>VoX - Cadastro de pauta</title>
-		<?php require '../assets/header.php' ?>
+		<?php require 'assets/header.php' ?>
 	</head>
 	<body>
     	<?php require 'assets/navbar.php' ?>
@@ -36,7 +38,7 @@
     	    <?php elseif($erro_cadastro): ?>
     	        <p>Não foi possível completar o cadastro. <a href="cadastro.php">Tente novamente</a>.</p>
     	    <?php else:
-    	        header('Location: ../index.php');
+    	        header('Location: index.php');
     	        die();
     	    endif; ?>
     	</div>

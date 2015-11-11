@@ -1,27 +1,40 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['usuario'])){
+		header('Location: ../index.php');
+		die();
+	}
+	require_once 'controllers/pauta.php';
+	require_once 'controllers/usuario.php';
+	require_once 'controllers/opcao_pauta.php';
+	
+	$pauta = new Pauta($_POST['pauta_id']);
+	$opcoes = $pauta->opcoes();
+?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            
-        </title>
-    </head>
-    <body>
-        <?php
-            $db_file = file_get_contents("private.json");
-        	$db_json = json_decode($db_file, true);
-        	
-        	$db_servidor = $db_json['database']['server'];
-        	$db_usuario = $db_json['database']['username'];
-        	$db_senha = $db_json['database']['password'];
-            
-            mysqli_connect("localhost", $db_usuario, $db_senha, "dataBase");
-
-            $query = "";
-        	
-                
-        
-        ?>
-        <div></div>
-        
+	<head>
+		<title>VoX - <?= $pauta->$titulo ?></title>
+		<?php require '../assets/header.php' ?>
+	</head>
+	<body>
+	    <?php require 'assets/navbar.php' ?>
+    	<div class="container main-container">
+    	    <h1><?= $pauta->$titulo ?></h1>
+    	    <p style="font-size: large;"><?= $pauta->$descricao ?></p>
+    	    <p>Pauta criada por <?= Usuario::nomeDoId($pauta->$autor) ?> em <?= date_format($pauta->$data_criacao, 'd/m/Y') ?>.</p>
+    	    <form action="votacao1.php" method="post">
+    	        <h2>Opções</h2>
+    	        <input type="hidden" name="votacao" id="votacao" value="<?= $pauta->$id ?>" />
+    	        <?php foreach($opcoes as $opcao): ?>
+    	            <h3><input type="radio" name="opcao" value="<?= $opcao->$id ?>"><?= $opcao->$titulo ?>" /></h3>
+    	            <?php if(isset($opcao->$descricao)): ?>
+    	                <p><?= $opcao->$descricao ?></p>
+    	            <?php endif; ?>
+    	        <?php endforeach; ?>
+    	        <p><input type="radio" name="opcao" value="0" /> Abster-se</p>
+    	        <input type="submit" value="Votar">
+    	    </form>
+    	</div>
     </body>
 </html>
