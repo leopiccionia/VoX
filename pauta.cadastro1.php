@@ -1,11 +1,11 @@
 <?php
 	session_start();
 	if(!isset($_SESSION['usuario'])){
-		header('Location: index.php');
+		header('Location: /index.php');
 		die();
 	}
 
-    require_once '/pauta.php';
+    require_once 'pauta.php';
     
     $pauta = new Pauta($_POST['titulo'], $_POST['descricao'], $_POST['data_inicio'], $_POST['data_fim']);
     $erro_validacao = false;
@@ -14,7 +14,7 @@
         $pauta_id = $pauta->cadastra($_SESSION['usuario']->$id);
         if($pauta_id > 0){
             $_SESSION['pauta'] = $pauta_id;
-            header('Location: opcao_pauta.cadastro.php');
+            header('Location: /opcao_pauta.cadastro.php');
             die();
         }
         else
@@ -37,10 +37,7 @@
     		    <p>Erro de validação. <a href="cadastro.php">Tente novamente</a>.</p>
     	    <?php elseif($erro_cadastro): ?>
     	        <p>Não foi possível completar o cadastro. <a href="cadastro.php">Tente novamente</a>.</p>
-    	    <?php else:
-    	        header('Location: index.php');
-    	        die();
-    	    endif; ?>
+    	    <?php endif; ?>
     	</div>
     </body>
 </html>

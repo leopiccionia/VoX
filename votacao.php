@@ -1,12 +1,12 @@
 <?php
 	session_start();
 	if(!isset($_SESSION['usuario'])){
-		header('Location: ../index.php');
+		header('Location: /index.php');
 		die();
 	}
-	require_once 'controllers/pauta.php';
-	require_once 'controllers/usuario.php';
-	require_once 'controllers/opcao_pauta.php';
+	require_once 'pauta.php';
+	require_once 'usuario.php';
+	require_once 'opcao_pauta.php';
 	
 	$pauta = new Pauta($_POST['pauta_id']);
 	$opcoes = $pauta->opcoes();
@@ -15,7 +15,7 @@
 <html>
 	<head>
 		<title>VoX - <?= $pauta->$titulo ?></title>
-		<?php require '../assets/header.php' ?>
+		<?php require 'assets/header.php' ?>
 	</head>
 	<body>
 	    <?php require 'assets/navbar.php' ?>
