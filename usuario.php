@@ -1,15 +1,15 @@
 <?php
 require_once 'controller.php';
 
-class Usuario extends Controller{
+class Usuario extends Controller {
 
     public $id;
     public $nome;
     public $email;
     private $hash_senha;
     
-    private $senha;
-    private $senha2;
+    public $senha;
+    public $senha2;
 
 	public function __construct(){
 		parent::__construct();
@@ -18,9 +18,9 @@ class Usuario extends Controller{
     /* Retorna lista de erros */
     function valida(){
     	$mensagens_erro = array();
-    	array_push($mensagens_erro, valida_nome());
-    	array_push($mensagens_erro, valida_email());
-        array_push($mensagens_erro, valida_senha());
+    	array_push($mensagens_erro, $this->valida_nome());
+    	array_push($mensagens_erro, $this->valida_email());
+        array_push($mensagens_erro, $this->valida_senha());
         return $mensagens_erro;
     }
     

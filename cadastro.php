@@ -1,21 +1,13 @@
 <?php
 	require_once 'usuario.php';
-	echo '1';
 
 	session_start();
-	echo '2';
 	$usuario = new Usuario();
-	var_dump($usuario);
-	echo '3';
-	$usuario->$nome = mysql_real_escape_string($_POST['cadastro_usuario']);
-	echo '4';
-	$usuario->$email = mysql_real_escape_string($_POST['cadastro_email']);
-	echo '5';
-	$usuario->$senha = $_POST['cadastro_senha'];
-	echo '6';
-	$usuario->$senha2 = $_POST['cadastro_senha2'];
-
-	echo '2';
+	
+	$usuario->nome = mysql_real_escape_string($_POST['cadastro_usuario']);
+	$usuario->email = mysql_real_escape_string($_POST['cadastro_email']);
+	$usuario->senha = $_POST['cadastro_senha'];
+	$usuario->senha2 = $_POST['cadastro_senha2'];
 
 	$mensagens_erro = array();
 	array_push($mensagens_erro, $usuario->valida());
@@ -24,10 +16,7 @@
 	if($erro_cadastro)
 		array_push($mensagens_erro, 'Não foi possível realizar cadastro.');
 	
-	echo '3';
-	
 	$_SESSION['usuario'] = $usuario;
-	echo '4';
 ?>
 
 <!DOCTYPE html>

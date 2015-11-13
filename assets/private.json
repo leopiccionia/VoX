@@ -1,6 +1,6 @@
 {
     "database":{
-        "server":"localhost",
+        "server":"tryvox.tk",
         "username":"dev",
         "password":"dumbbabies"
     }
