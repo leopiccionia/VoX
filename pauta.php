@@ -35,7 +35,7 @@ class Pauta extends Controller{
 			$conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
 			if(mysqli_query($conexao, "INSERT INTO pauta(autor_id, titulo, descricao, data_criacao, data_inicio, data_fim) VALUES($autor, '$titulo', '$descricao', CURDATE(), '$data_inicio', '$data_fim')")){
 			    $id_query = mysqli_query($conexao, "SELECT pauta_id FROM pauta WHERE autor_id = $autor ORDER BY pauta_id DESC LIMIT 1");
-			    if($row = mysqli_fetch_array($id_query)
+			    if($row = mysqli_fetch_array($id_query))
 			        return $row['pauta_id'];
 			    else
 			        return -1;

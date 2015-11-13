@@ -15,7 +15,7 @@
 	    <?php require 'assets/navbar.php' ?>
     	<div class="container main-container">
             <h1>Cadastro de pauta</h1>
-            <form action="cadastro1.php" method="post">
+            <form action="pauta.cadastro1.php" method="post">
                 <div class="form-group">
                     <label for="titulo">Título [obrigatório]</label>
                     <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Título da votação" required />
