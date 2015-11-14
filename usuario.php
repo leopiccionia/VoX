@@ -11,56 +11,62 @@ class Usuario extends Controller {
     public $senha;
     public $senha2;
 
+    public $erros_validacao;
+
 	public function __construct(){
 		parent::__construct();
+		$this->erros_validacao = array();
 	}
 
     /* Retorna lista de erros */
-    function valida(){
-    	$mensagens_erro = array();
-    	array_push($mensagens_erro, $this->valida_nome());
-    	array_push($mensagens_erro, $this->valida_email());
-        array_push($mensagens_erro, $this->valida_senha());
-        return $mensagens_erro;
+    function validar_informacoes(){
+    	array_push($this->erros_validacao, $this->valida_nome());
+    	array_push($this->erros_validacao, $this->valida_email());
+        array_push($this->erros_validacao, $this->valida_senha());
+        
+        return $this->erros_validacao;
     }
     
     private function valida_nome(){
-        $mensagem_erro = array();
-        if(empty($nome))
-    	    array_push($mensagem_erro, 'Nome de usuário em branco.');
-    	return $mensagem_erro;
+        if(empty($this->nome))
+    	    return 'Favor, insira um nome de usuário.';
     }
     
     private function valida_email(){
-        $mensagem_erro = array();
-        if(empty($email))
-            array_push($mensagem_erro, 'E-mail em branco.');
-    	elseif(!filter_var($email, FILTER_VALIDATE_EMAIL))
-    		array_push($mensagem_erro, 'E-mail inválido.');
+        if(empty($this->email))
+            return 'Favor, insira um e-mail.';
+
+    	elseif(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
+    		return 'E-mail inserido está em um formato inválido. Favor, tentar novamente.';
+    	
     	else{
-    		$config_file = file_get_contents("../assets/public.json");
-    		$config_json = json_decode($config_file, true);
-    		$allow_domain = $config_json['config']['allow_domain'];
-    		if(!empty($allow_domain) && $allow_domain != explode('@', $email)[1])
-    			array_push($mensagem_erro, 'E-mail não pertence ao domínio "' .$allow_domain .'".');
+    		return $this->verificar_email_pertence_ao_dominio();
     	}
-    	return $mensagens_erro;
+    }
+
+    private function verificar_email_pertence_ao_dominio(){
+    	$config_file = file_get_contents("assets/public.json");
+		$config_json = json_decode($config_file, true);
+		$allow_domain = $config_json['config']['allow_domain'];
+    		
+		if(!empty($allow_domain) && $allow_domain != explode('@', $this->email)[1])
+			return 'O e-mail fornecido não pertence ao domínio "' .$allow_domain .'", favor insira um e-mail dentro do domínio.';
     }
     
     private function valida_senha(){
-        $mensagens_erro = array();
-        if(empty($senha) || empty($senha2))
-    		array_push($mensagens_erro, 'Senha deve ser repetida.');
-    	elseif($senha != $senha2)
-    		array_push($mensagens_erro, 'Senhas não batem.');
-    	return $mensagens_erro;
+        if(empty($this->senha) || empty($this->senha2))
+    		return 'Favor, insira a senha e a repita nos campos indicados.';
+
+    	if($this->senha != $this->senha2)
+    		return 'Favor, inserir a mesma senha nos dois campos indicados.';
     }
     
-    function cadastra(){
-        $hash_senha = sha1($senha .$nome);
+    function cadastrar(){
+        $hash_senha = sha1($this->senha .$this->nome);
+
 		try{
-			$conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
-			return mysqli_query($conexao, "INSERT INTO usuario(nome, usuario, email, status) VALUES('$nome', '$email', '$hash_senha', 'C'");
+			$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha);
+			return mysqli_query($conexao, "INSERT INTO usuario(nome, email, senha, status) VALUES('$this->nome', '$this->email', '$hash_senha', 'C'");
 		}
 		catch(Exception $e){
 			return false;
