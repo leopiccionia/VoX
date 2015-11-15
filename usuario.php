@@ -65,7 +65,7 @@ class Usuario extends Controller {
         $hash_senha = sha1($this->senha .$this->nome);
 
 		try{
-			$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_name);
+			$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_nome);
 			return mysqli_query($conexao, "INSERT INTO usuario(nome, email, senha, status) VALUES('{$this->nome}', '{$this->email}', '$hash_senha', 'C')");
 		}
 		catch(Exception $e){
@@ -82,7 +82,7 @@ class Usuario extends Controller {
     }
     
 	function loginPorEmail($email, $senha){
-		$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_name);
+		$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_nome);
 		$query = mysqli_query($conexao, "SELECT nome FROM usuario WHERE email = '{$this->email}' AND status = 'C'");
 
 		while($row = mysqli_fetch_array($query)){
@@ -101,7 +101,7 @@ class Usuario extends Controller {
 	}
 	
 	function loginPorNome($nome, $senha){
-		$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_name);
+		$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_nome);
 		$hash_senha = sha1($senha .$nome);
 		
 		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE nome = '{$this->nome}' AND senha = '{$this->senha}' AND status = 'C'");
@@ -115,7 +115,7 @@ class Usuario extends Controller {
 	}
 	
 	static function nomeDoId($id){
-		$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_name);
+		$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_nome);
 		$query = mysqli_connect($conexao, "SELECT nome FROM usuario WHERE usuario_id = {$this->id}");
 		if($row = mysqli_fetch_array($query)){
 			$nome = $row['nome'];
