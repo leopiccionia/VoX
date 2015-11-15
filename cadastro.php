@@ -13,13 +13,8 @@
 	$mensagens_erro = $usuario->validar_informacoes();
 	$sucesso_cadastro = false;
 
-	var_dump($sucesso_cadastro);
-
-
-	if(!empty($mensagens_erro)){
+	if(!empty($mensagens_erro))
 		$sucesso_cadastro = $usuario->cadastrar();
-		var_dump($sucesso_cadastro);
-	}
 	
 	if(!$sucesso_cadastro)
 		array_push($mensagens_erro, 'Não foi possível realizar cadastro.');
@@ -36,7 +31,7 @@
 <body>
 	<?php require_once 'assets/navbar.php' ?>
 	<div class="container main-container">
-		<?php if(!empty($mensagens_erro)): ?>
+		<?php if(!$sucesso_cadastro): ?>
 			<h1>Cadastro mal-sucedido!</h1>
 			<p>Um ou mais erros ocorreram:</p>
 			<ul>

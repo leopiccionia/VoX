@@ -65,8 +65,8 @@ class Usuario extends Controller {
         $hash_senha = sha1($this->senha .$this->nome);
 
 		try{
-			$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha);
-			return mysqli_query($conexao, "INSERT INTO usuario(nome, email, senha, status) VALUES('$this->nome', '$this->email', '$hash_senha', 'C'");
+			$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_name);
+			return mysqli_query($conexao, "INSERT INTO usuario(nome, email, senha, status) VALUES('{$this->nome}', '{$this->email}', '$hash_senha', 'C')");
 		}
 		catch(Exception $e){
 			return false;
@@ -82,15 +82,15 @@ class Usuario extends Controller {
     }
     
 	function loginPorEmail($email, $senha){
-		$conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
-		$query = mysqli_query($conexao, "SELECT nome FROM usuario WHERE email = '$email' AND status = 'C'");
+		$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_name);
+		$query = mysqli_query($conexao, "SELECT nome FROM usuario WHERE email = '{$this->email}' AND status = 'C'");
 
 		while($row = mysqli_fetch_array($query)){
 			$nome = $row['nome'];
-			$hash_senha = sha1($senha .$nome);
+			$hash_senha = sha1($this->senha .$this->nome);
 		}
 		
-		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE email = '$email' AND senha = '$hash_senha'");
+		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE email = '{$this->email}' AND senha = '$hash_senha'");
 		if($row = mysqli_fetch_array($query))
 			$this->$id = $row['usuario_id'];
 		
@@ -101,22 +101,22 @@ class Usuario extends Controller {
 	}
 	
 	function loginPorNome($nome, $senha){
-		$conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
+		$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_name);
 		$hash_senha = sha1($senha .$nome);
 		
-		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE nome = '" . $nome . "' AND senha = '" .$senha ."' AND status = 'C'");
+		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE nome = '{$this->nome}' AND senha = '{$this->senha}' AND status = 'C'");
 		if($row = mysqli_fetch_array($query))
 			$this->$id = $row['usuario_id'];
 
 		mysqli_close($conexao);
-		if($$this->id == -1)
+		if($this->id == -1)
 			return false;
 		return true;
 	}
 	
 	static function nomeDoId($id){
-		$conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
-		$query = mysqli_connect($conexao, "SELECT nome FROM usuario WHERE usuario_id = $id");
+		$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_name);
+		$query = mysqli_connect($conexao, "SELECT nome FROM usuario WHERE usuario_id = {$this->id}");
 		if($row = mysqli_fetch_array($query)){
 			$nome = $row['nome'];
 			mysqli_close($conexao);
@@ -124,7 +124,6 @@ class Usuario extends Controller {
 		}
 		mysqli_close($conexao);
 		return null;
-	}
-        
+	}      
 }
 ?>
