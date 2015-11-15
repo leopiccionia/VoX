@@ -52,6 +52,7 @@ CREATE TABLE voto(
     voto_id INT NOT NULL AUTO_INCREMENT,
     usuario_id INT NOT NULL,
     opcao_id INT NOT NULL,
+    data TIMESTAMP NOT NULL,
     PRIMARY KEY(voto_id),
     FOREIGN KEY(usuario_id) REFERENCES usuario(usuario_id),
     FOREIGN KEY(opcao_id) REFERENCES opcao_pauta(opcao_id)

@@ -87,10 +87,10 @@ class Usuario extends Controller {
 
 		while($row = mysqli_fetch_array($query)){
 			$nome = $row['nome'];
-			$hash_senha = sha1($this->senha .$this->nome);
+			$this->hash_senha = sha1($this->senha .$this->nome);
 		}
 		
-		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE email = '{$this->email}' AND senha = '$hash_senha'");
+		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE email = '{$this->email}' AND senha = '{$this->hash_senha}'");
 		if($row = mysqli_fetch_array($query))
 			$this->$id = $row['usuario_id'];
 		
@@ -102,9 +102,9 @@ class Usuario extends Controller {
 	
 	function loginPorNome($nome, $senha){
 		$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_nome);
-		$hash_senha = sha1($senha .$nome);
+		$this->hash_senha = sha1($senha .$nome);
 		
-		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE nome = '{$this->nome}' AND senha = '{$this->senha}' AND status = 'C'");
+		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE nome = '{$this->nome}' AND senha = '{$this->hash_senha}' AND status = 'C'");
 		if($row = mysqli_fetch_array($query))
 			$this->$id = $row['usuario_id'];
 
@@ -113,8 +113,25 @@ class Usuario extends Controller {
 			return false;
 		return true;
 	}
+
+	public function vota($pauta, $opcao){
+		if($opcao == 0)
+			return absterVotacao($pauta);
+		else
+			return votarOpcao($opcao);
+	}
 	
-	static function nomeDoId($id){
+	private function absterVotacao($pauta){
+		$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_nome);
+		return mysqli_query($conexao, "INSERT INTO abstencao(usuario_id, pauta_id, data) VALUES({$this->id}, $pauta, NOW())");
+	}
+	
+	private function votarOpcao($opcao){
+		$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_nome);
+		return mysqli_query($conexao, "INSERT INTO voto(usuario_id, opcao_id, data) VALUES({$this->id}, $opcao, NOW())");
+	}
+	
+	public static function nomeDoId($id){
 		$conexao = mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_nome);
 		$query = mysqli_connect($conexao, "SELECT nome FROM usuario WHERE usuario_id = {$this->id}");
 		if($row = mysqli_fetch_array($query)){
