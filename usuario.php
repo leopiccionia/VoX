@@ -24,7 +24,7 @@ class Usuario extends Controller {
     	array_push($this->erros_validacao, $this->valida_email());
         array_push($this->erros_validacao, $this->valida_senha());
         
-        return $this->erros_validacao;
+        return array_filter($this->erros_validacao);
     }
     
     private function valida_nome(){

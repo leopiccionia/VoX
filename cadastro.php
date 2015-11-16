@@ -4,8 +4,8 @@
 	session_start();
 	$usuario = new Usuario();
 	
-	$usuario->nome = mysql_real_escape_string($_POST['cadastro_usuario']);
-	$usuario->email = mysql_real_escape_string($_POST['cadastro_email']);
+	$usuario->nome = $_POST['cadastro_usuario'];
+	$usuario->email = $_POST['cadastro_email'];
 	$usuario->senha = $_POST['cadastro_senha'];
 	$usuario->senha2 = $_POST['cadastro_senha2'];
 
