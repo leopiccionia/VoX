@@ -11,7 +11,7 @@
     $erro_validacao = false;
     $erro_cadastro = false;
     if($pauta->valida()){
-        $pauta_id = $pauta->cadastra($_SESSION['usuario']->$id);
+        $pauta_id = $pauta->cadastra($_SESSION['usuario']->id);
         if($pauta_id > 0){
             $_SESSION['pauta'] = $pauta_id;
             header('Location: /opcao_pauta.cadastro.php');

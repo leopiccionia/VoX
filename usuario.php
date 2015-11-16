@@ -74,7 +74,7 @@ class Usuario extends Controller {
     }
     
     function login($credencial, $senha){
-        $this->$id = -1;
+        $this->id = -1;
 		if(filter_var($credencial, FILTER_VALIDATE_EMAIL))
 			return loginPorEmail($credencial, $senha);
 		else
@@ -92,10 +92,10 @@ class Usuario extends Controller {
 		
 		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE email = '{$this->email}' AND senha = '{$this->hash_senha}'");
 		if($row = mysqli_fetch_array($query))
-			$this->$id = $row['usuario_id'];
+			$this->id = $row['usuario_id'];
 		
 		mysqli_close($conexao);
-		if($this->$id == -1)
+		if($this->id == -1)
 			return false;
 		return true;
 	}
@@ -106,7 +106,7 @@ class Usuario extends Controller {
 		
 		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE nome = '{$this->nome}' AND senha = '{$this->hash_senha}' AND status = 'C'");
 		if($row = mysqli_fetch_array($query))
-			$this->$id = $row['usuario_id'];
+			$this->id = $row['usuario_id'];
 
 		mysqli_close($conexao);
 		if($this->id == -1)

@@ -14,12 +14,12 @@ class Pauta extends Controller{
     function __construct($titulo, $descricao, $data_inicio, $data_fim, $autor, $data_criacao = null){
         parent::__construct();
         if($data_criacao == null)
-            $this->$data_criacao = time();
-        $this->$titulo = mysql_real_escape_string($titulo);
-        $this->$descricao = mysql_real_escape_string($descricao);
-        $this->$data_inicio = strtotime($data_inicio);
-        $this->$data_fim = strtotime($data_fim);
-        $this->$autor = $autor;
+            $this->data_criacao = time();
+        $this->titulo = mysql_real_escape_string($titulo);
+        $this->descricao = mysql_real_escape_string($descricao);
+        $this->data_inicio = strtotime($data_inicio);
+        $this->data_fim = strtotime($data_fim);
+        $this->autor = $autor;
     }
     
     function valida(){
@@ -54,9 +54,9 @@ class Pauta extends Controller{
         $query = mysqli_query($conexao, "SELECT opcao_id, titulo, descricao FROM opcao_pauta WHERE pauta_id = $id");
         while($row = mysqli_fetch_array($query)){
             $opcao = new OpcaoPauta();
-            $opcao->$id = $row['id'];
-            $opcao->$titulo = $row['titulo'];
-            $opcao->$descricao = $row['descricao'];
+            $opcao->id = $row['id'];
+            $opcao->titulo = $row['titulo'];
+            $opcao->descricao = $row['descricao'];
             array_push($opcoes, $opcao);
         }
         return $opcoes;

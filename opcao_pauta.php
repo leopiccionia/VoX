@@ -8,9 +8,9 @@
         
         public function __construct($titulo, $descricao, $pauta){
             parent::__construct();
-            $this->$titulo = $titulo;
-            $this->$descricao = $descricao;
-            $this->$pauta = $pauta;
+            $this->titulo = $titulo;
+            $this->descricao = $descricao;
+            $this->pauta = $pauta;
         }
     
         public function cadastra(){
