@@ -32,7 +32,7 @@
                     <label for="data_fim">Data de fim</label>
                     <input type="date" id="data_fim" name="data_fim" class="form-control" placeholder="YYYY-MM-DD" required />
                 </div>
-            	<input type="submit" class="btn btn-primary" value="Entrar">
+            	<button class="btn btn-primary">Cadastrar</button>
             </form>
     	</div>
     </body>
