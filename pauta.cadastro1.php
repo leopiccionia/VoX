@@ -20,8 +20,8 @@
         if($pauta_id > 0)
         {
             $_SESSION['pauta'] = $pauta_id;
-            header('Location: /opcao_pauta.cadastro.php');
-            die();
+            //header('Location: /opcao_pauta.cadastro.php');
+            //die();
         }
         else
             $erro_cadastro = true;

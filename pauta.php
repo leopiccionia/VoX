@@ -14,19 +14,51 @@ class Pauta extends Controller{
     function __construct($titulo, $descricao, $data_inicio, $data_fim, $data_criacao = null){
         parent::__construct();
         
+        echo 'Data inicio primária: ';
+        var_dump($data_inicio);
+
+
+        echo 'Data Fim primária: ';
+        var_dump($data_fim);
+
         if($data_criacao == null)
             $this->data_criacao = time();
 
         $this->titulo = mysql_real_escape_string($titulo);
         $this->descricao = mysql_real_escape_string($descricao);
-        $this->data_inicio = strtotime($data_inicio);
-        $this->data_fim = strtotime($data_fim);
+
+        $this->data_inicio = $this->transformarStringEmData($data_inicio);
+        $this->data_fim = $this->transformarStringEmData($data_fim);
+
         $this->autor = (int)$_SESSION['usuario']->id;
+
+        echo 'Data inicio secundária: ';
+        var_dump($this->data_inicio);
+
+
+        echo 'Data Fim secundária: ';
+        var_dump($this->data_fim);
+
     }
     
     function validar(){
-        if(empty($this->titulo) || empty($this->data_inicio) || empty($this->data_fim))
+        if(empty($this->titulo)){
+            echo 'Sem titulo!';
             return false;
+        } 
+
+
+        if(empty($this->data_inicio)){
+            echo 'Sem data inicio!';
+            return false;
+        } 
+
+
+        if(empty($this->data_fim)){
+            echo 'Sem data fim!';
+            return false;
+        }
+            
 
         if(empty($this->data_inicio) || empty($this->data_fim) || $this->data_inicio > $this->data_fim)
             return false;
@@ -66,5 +98,9 @@ class Pauta extends Controller{
         }
         return $opcoes;
     }
+
+    private function transformarStringEmData($data){
+        $novoFormato = str_replace('/', '-', $data);
+        return date('Y-m-d', strtotime($novoFormato));
+    }
 }
-?>
