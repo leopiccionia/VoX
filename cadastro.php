@@ -13,13 +13,17 @@
 	$mensagens_erro = $usuario->validar_informacoes();
 	$sucesso_cadastro = false;
 
-	if(!empty($mensagens_erro))
+	if(empty($mensagens_erro))
 		$sucesso_cadastro = $usuario->cadastrar();
 	
 	if(!$sucesso_cadastro)
-		array_push($mensagens_erro, 'Não foi possível realizar cadastro.');
-	
-	$_SESSION['usuario'] = $usuario;
+	{
+		$_SESSION['erros_validacao'] = $mensagens_erro;
+		//header('Location: ' . __DIR__ . '/index.php');
+		//exit();
+	}
+	else
+		$_SESSION['usuario'] = $usuario;
 ?>
 
 <!DOCTYPE html>

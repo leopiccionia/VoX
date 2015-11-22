@@ -4,6 +4,7 @@
 	session_start();
 	$_SESSION['usuario'] = new Usuario();
 	$logado = $_SESSION['usuario']->login($_POST['login_credencial'], $_POST['login_senha']);
+
 	if($logado){
 		header('Location: /home.php');
 		die();
