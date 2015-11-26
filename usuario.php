@@ -90,6 +90,8 @@ class Usuario extends Controller {
 
      public function login($credencial, $senha){
         $this->id = -1;
+        $oloko = 'Viesh, e não é que é a mesma?';
+
 		if($this->credencialEhEmail($credencial))
 			return $this->loginPorEmail($credencial, $senha);
 		else
@@ -102,10 +104,8 @@ class Usuario extends Controller {
 
     private function loginPorEmail($email, $senha){
 		
-    	if(!$this->email_existe($email)){
-    		echo 'E-mail não existe!';
+    	if(!$this->email_existe($email))
     		return false;
-    	}
     		
 		$this->criarHashSenhaPartindoDoEmail($email, $senha);		
 		return $this->definirUsuarioPorSenhaEmail($email);
@@ -117,7 +117,6 @@ class Usuario extends Controller {
 
 		if($row = mysqli_fetch_array($query))
 		{
-			echo 'Vamos definir o hash de senha!';
 			$this->nome = $row['nome'];
 			$this->hash_senha = sha1($senha . $this->nome);
 		}
@@ -129,12 +128,9 @@ class Usuario extends Controller {
 		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE email = '{$email}' AND senha = '{$this->hash_senha}'");
 
 		if($row = mysqli_fetch_array($query))
-		{
-			echo 'Entrou no if em que insere o Id da row';
 			$this->id = $row['usuario_id'];
-		}
+		
 		mysqli_close($conexao);
-
 		return $this->id != -1;
 	}
 
@@ -145,7 +141,7 @@ class Usuario extends Controller {
 		$conexao = $this->abrir_conexao();
 		$this->hash_senha = sha1($senha .$nome);
 		
-		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE nome = '{$this->nome}' AND senha = '{$this->hash_senha}' AND status = 'C'");
+		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE nome = '{$nome}' AND senha = '{$this->hash_senha}' AND status = 'C'");
 		
 		if($row = mysqli_fetch_array($query))
 			$this->id = $row['usuario_id'];

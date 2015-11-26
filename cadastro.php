@@ -19,8 +19,8 @@
 	if(!$sucesso_cadastro)
 	{
 		$_SESSION['erros_validacao'] = $mensagens_erro;
-		//header('Location: ' . __DIR__ . '/index.php');
-		//exit();
+		header('Location: /index.php');
+		exit();
 	}
 	else
 		$_SESSION['usuario'] = $usuario;
@@ -35,16 +35,7 @@
 <body>
 	<?php require_once 'assets/navbar.php' ?>
 	<div class="container main-container">
-		<?php if(!$sucesso_cadastro): ?>
-			<h1>Cadastro mal-sucedido!</h1>
-			<p>Um ou mais erros ocorreram:</p>
-			<ul>
-				<?php foreach($mensagens_erro as $mensagem): ?>
-					<li><?= $mensagem ?></li>
-				<?php endforeach; ?>
-			</ul>
-			<div class="alert alert-danger">Retorne à <a href="index.php">página anterior</a> para corrigir os erros.</div>
-		<?php else:	?>
+		<?php if($sucesso_cadastro): ?>
 			<h1>Cadastro bem-sucedido!</h1>
 			<p>Seu cadastro foi completado com sucesso! Favor, aguarde o envio do e-mail de confirmação.</p>
 		<?php endif; ?>
