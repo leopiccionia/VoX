@@ -1,5 +1,5 @@
 <?php
-require_once 'controller.php';
+require_once APP_PATH . '/controller.php';
 
 class Usuario extends Controller {
 
@@ -88,71 +88,6 @@ class Usuario extends Controller {
     		return 'Sua senha deve ter mais que 3 caracteres, com pelo menos um sendo numérico e um sendo de alfabético.';
     }
 
-     public function login($credencial, $senha){
-        $this->id = -1;
-        $oloko = 'Viesh, e não é que é a mesma?';
-
-		if($this->credencialEhEmail($credencial))
-			return $this->loginPorEmail($credencial, $senha);
-		else
-			return $this->loginPorNome($credencial, $senha);
-    }
-
-    private function credencialEhEmail($credencial){
-    	return filter_var($credencial, FILTER_VALIDATE_EMAIL);
-    }
-
-    private function loginPorEmail($email, $senha){
-		
-    	if(!$this->email_existe($email))
-    		return false;
-    		
-		$this->criarHashSenhaPartindoDoEmail($email, $senha);		
-		return $this->definirUsuarioPorSenhaEmail($email);
-	}
-
-	private function criarHashSenhaPartindoDoEmail($email, $senha){
-		$conexao = $this->abrir_conexao();
-		$query = mysqli_query($conexao, "SELECT nome FROM usuario WHERE email = '{$email}' AND status = 'C'");
-
-		if($row = mysqli_fetch_array($query))
-		{
-			$this->nome = $row['nome'];
-			$this->hash_senha = sha1($senha . $this->nome);
-		}
-		mysqli_close($conexao);
-	}
-
-	private function definirUsuarioPorSenhaEmail($email){
-		$conexao = $this->abrir_conexao();
-		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE email = '{$email}' AND senha = '{$this->hash_senha}'");
-
-		if($row = mysqli_fetch_array($query))
-			$this->id = $row['usuario_id'];
-		
-		mysqli_close($conexao);
-		return $this->id != -1;
-	}
-
-
-
-
-	private function loginPorNome($nome, $senha){
-		$conexao = $this->abrir_conexao();
-		$this->hash_senha = sha1($senha .$nome);
-		
-		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE nome = '{$nome}' AND senha = '{$this->hash_senha}' AND status = 'C'");
-		
-		if($row = mysqli_fetch_array($query))
-			$this->id = $row['usuario_id'];
-
-		mysqli_close($conexao);
-		if($this->id == -1)
-			return false;
-
-		return true;
-	}
-
 	public function vota($pauta, $opcao){
 		if($opcao == 0)
 			return absterVotacao($pauta);
@@ -168,10 +103,6 @@ class Usuario extends Controller {
 	private function votarOpcao($opcao){
 		$conexao = $this->abrir_conexao();
 		return mysqli_query($conexao, "INSERT INTO voto(usuario_id, opcao_id, data) VALUES({$this->id}, $opcao, NOW())");
-	}
-
-	private function abrir_conexao(){
-		return mysqli_connect($this->db_servidor, $this->db_usuario, $this->db_senha, $this->db_nome);
 	}
 
 	public static function nomeDoId($id){

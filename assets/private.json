@@ -1,8 +1,19 @@
 {
-    "database":{
-        "server":"tryvox.tk",
-        "username":"dev",
-        "password":"dumbbabies",
-        "name": "vox"
-    }
+	"local" : {
+	    "database":{
+	        "server":"localhost",
+	        "username":"will",
+	        "password":"teste",
+	        "name": "vox"
+	    }
+	},
+	"prod" : {
+	    "database":{
+	        "server":"localhost",
+	        "username":"will",
+	        "password":"teste",
+	        "name": "vox"
+	    }
+	}
+
 }
