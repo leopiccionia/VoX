@@ -5,9 +5,6 @@
 	$validador = new LoginValidator($_POST['login_credencial'], $_POST['login_senha']);
 	$resultado = $validador->validar_dados_de_login();
 
-	echo 'E o resultado vale......';
-	var_dump($resultado);
-
 	if(is_object($resultado))
 	{
 		$_SESSION['usuario'] = $resultado;

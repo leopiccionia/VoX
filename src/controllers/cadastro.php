@@ -1,16 +1,13 @@
 <?php
-	require_once 'usuario.php';
+	require_once MODEL_PATH . 'usuario.php';
+	require_once VALIDATORS_PATH . 'cadastroValidator.php';
 
 	session_start();
-	$usuario = new Usuario();
-	
-	$usuario->nome = mysql_escape_string($_POST['cadastro_usuario']);
-	$usuario->email = mysql_escape_string($_POST['cadastro_email']);
-	$usuario->senha = $_POST['cadastro_senha'];
-	$usuario->senha2 = $_POST['cadastro_senha2'];
+	$usuario = new Usuario(mysql_escape_string($_POST['cadastro_usuario']), mysql_escape_string($_POST['cadastro_email']), $_POST['cadastro_senha'], $_POST['cadastro_senha_repetida']);
+	$cadastro = new CadastroValidator($usuario);
 
 	$mensagens_erro = array();
-	$mensagens_erro = $usuario->validar_informacoes();
+	$mensagens_erro = $cadastro->validar_informacoes();
 	$sucesso_cadastro = false;
 
 	if(empty($mensagens_erro))

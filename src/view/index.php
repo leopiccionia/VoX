@@ -14,11 +14,11 @@
 		</div>
 		<div class="login">
 			<h2>Cadastre-se</h2>
-			<form action="cadastro.php" method="post">
+			<form action="/cadastro" method="post">
 				<input type="text" id="cadastro_usuario" name="cadastro_usuario" class="form-control" placeholder="Seu nome de usuário" required>
 				<input type="email" id="cadastro_email" name="cadastro_email" class="form-control" placeholder="Seu e-mail" required>
 				<input type="password" id="cadastro_senha" name="cadastro_senha" class="form-control" placeholder="Sua senha" required>
-				<input type="password" id="cadastro_senha2" name="cadastro_senha2" class="form-control" placeholder="Repita sua senha" required>
+				<input type="password" id="cadastro_senha_repetida" name="cadastro_senha_repetida" class="form-control" placeholder="Repita sua senha" required>
 				<button class="btn btn-primary">Cadastre-se agora!</button>
 			</form>
 			<h2>Já é cadastrado?</h2>
