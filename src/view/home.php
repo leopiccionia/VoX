@@ -9,10 +9,10 @@
 <html>
 <head>
 	<title>VoX</title>
-	<?php require 'assets/header.php' ?>
+	<?php require ASSETS_PATH . 'header.php' ?>
 </head>
 <body>
-	<?php require 'assets/navbar.php' ?>
+	<?php require ASSETS_PATH . 'navbar.php' ?>
 	<div class="container main-container">
 		<!-- COMPLETAR -->
 	</div>

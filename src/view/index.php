@@ -2,10 +2,10 @@
 <html>
 <head>
 	<title>VoX</title>
-	<?php require_once APP_PATH . 'assets/header.php' ?>
+	<?php require_once ASSETS_PATH . 'header.php' ?>
 </head>
 <body>
-	<?php require_once  APP_PATH .  'commom/error_message.php' ?>
+	<?php require_once  COMMOM_PATH .  'error_message.php' ?>
 
 	<div class="container">
 		<div class="jumbotron">
