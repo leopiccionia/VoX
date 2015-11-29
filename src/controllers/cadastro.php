@@ -6,16 +6,15 @@
 	$usuario = new Usuario(mysql_escape_string($_POST['cadastro_usuario']), mysql_escape_string($_POST['cadastro_email']), $_POST['cadastro_senha'], $_POST['cadastro_senha_repetida']);
 	$cadastro = new CadastroValidator($usuario);
 
-	$mensagens_erro = array();
-	$mensagens_erro = $cadastro->validar_informacoes();
+	$erros_validacao = $cadastro->validar_informacoes();
 	$sucesso_cadastro = false;
 
-	if(empty($mensagens_erro))
+	if(empty($erros_validacao))
 		$sucesso_cadastro = $usuario->cadastrar();
 	
 	if(!$sucesso_cadastro)
 	{
-		$_SESSION['erros_validacao'] = $mensagens_erro;
+		$_SESSION['erros_validacao'] = $erros_validacao;
 		header('Location: /index.php');
 		exit();
 	}
