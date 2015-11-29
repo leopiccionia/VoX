@@ -3,10 +3,11 @@
 <html>
 	<head>
 		<title>VoX - Cadastro de pauta</title>
-		<?php require ASSETS_PATH . 'header.php' ?>
+		<?php require ASSETS_PATH . 'header.php'; ?>
 	</head>
 	<body>
-	    <?php require ASSETS_PATH . 'navbar.php' ?>
+        <?php require ASSETS_PATH . 'navbar.php'; ?>
+	    <?php require COMMOM_PATH . 'error_message.php'; ?>
     	<div class="container main-container">
             <h1>Cadastro de pauta</h1>
             <form action="/cadastrar_pauta" method="post">

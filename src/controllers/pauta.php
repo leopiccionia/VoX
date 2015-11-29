@@ -1,27 +1,22 @@
 <?php
     require_once MODEL_PATH . 'pauta.php';
+    require_once VALIDATORS_PATH . 'pautaValidator.php';
+    require_once USER_LOGGED;
 
     session_start();
 	
-    if(!isset($_SESSION['usuario']))
-    {
-		header('Location: /index.php');
-		die();
-	}
-    
     $pauta = new Pauta($_POST['titulo'], $_POST['descricao'], $_POST['data_inicio'], $_POST['data_fim']);
     $validator = new PautaValidator($pauta);
 
-    $erro_validacao = $validator->validar_informacoes();
-    $erro_cadastro = false;
+    $erros_validacao = $validator->validar_informacoes();
     
-    if(empty($erro_validacao))
+    if(empty($erros_validacao))
     {
         if($pauta->cadastrar())
         {
             $_SESSION['pauta'] = $pauta->buscar_mais_recente();
-            //header('Location: /opcao_pauta.cadastro.php');
-            //die();
+            header('Location: /opcao_pauta');
+            die();
         }
         array_push($erros_validacao, 'Um erro interno impediu a criação da pauta.');
     }

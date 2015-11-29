@@ -7,6 +7,7 @@ define('COMMOM_PATH', APP_PATH . 'commom/');
 define('CONTROLLER_PATH', APP_PATH . 'src/controllers/');
 define('MODEL_PATH', APP_PATH . 'src/models/');
 define('VALIDATORS_PATH', APP_PATH . 'src/validators/');
+define('USER_LOGGED', COMMOM_PATH . 'user_logged_confirmation.php');
 
 define('ENV', (strpos($_SERVER['HTTP_HOST'], 'localhost') === false)? 'prod' : 'local');
 
@@ -30,6 +31,10 @@ switch ($_SERVER['REQUEST_URI']) {
 
     case '/cadastrar_pauta':
         require CONTROLLER_PATH . 'pauta.php';
+        break;
+
+    case '/opcao_pauta':
+        require VIEW_PATH . 'opcao_pauta.php';
         break;
 
     default:

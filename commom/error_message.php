@@ -1,5 +1,7 @@
 <?php
-	session_start();
+
+	if (session_status() == PHP_SESSION_NONE) 
+    	session_start();
 
 	$headerErro;
 
@@ -18,7 +20,7 @@
 	    <ul>
 	        <?php foreach ($_SESSION['erros_validacao'] as $erro): ?>
 	        	<li><?= $erro ?></li>
-	        <?php endforeach; session_destroy(); ?>
+	        <?php endforeach; unset($_SESSION['erros_validacao']); ?>
 	    </ul>
 	</div>		
 <?php endif; ?>

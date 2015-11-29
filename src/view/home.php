@@ -1,10 +1,4 @@
-<?php
-	session_start();
-	if(!isset($_SESSION['usuario'])){
-		header('Location: /index.php');
-		die();
-	}
-?>
+<?php require  COMMOM_PATH . 'user_logged_confirmation.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
