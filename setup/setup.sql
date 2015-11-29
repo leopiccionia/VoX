@@ -40,11 +40,13 @@ CREATE TABLE opcao_pauta(
 
 CREATE TABLE comentario(
     comentario_id INT NOT NULL AUTO_INCREMENT,
+    opcao_id INT NOT NULL,
     autor_id INT NOT NULL,
     conteudo TEXT NOT NULL,
     tipo CHAR(1) NOT NULL,
-    curtidas INT NOT NULL,
+    curtidas INT NOT NULL DEFAULT 0,
     PRIMARY KEY(comentario_id),
+    FOREIGN KEY(opcao_id) REFERENCES opcao_pauta(opcao_id),
     FOREIGN KEY(autor_id) REFERENCES usuario(usuario_id)
 );
 
