@@ -9,11 +9,10 @@
 	$usuario->senha = $_POST['cadastro_senha'];
 	$usuario->senha2 = $_POST['cadastro_senha2'];
 
-	$mensagens_erro = array();
 	$mensagens_erro = $usuario->validar_informacoes();
 	$sucesso_cadastro = false;
 
-	if(!empty($mensagens_erro))
+	if(empty($mensagens_erro))
 		$sucesso_cadastro = $usuario->cadastrar();
 	
 	if(!$sucesso_cadastro)
@@ -21,7 +20,6 @@
 	
 	$_SESSION['usuario'] = $usuario;
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +31,7 @@
 	<div class="container main-container">
 		<?php if(!$sucesso_cadastro): ?>
 			<h1>Cadastro mal-sucedido!</h1>
-			<p>Um ou mais erros ocorreram:</p>
+			<p>Corrija os erros:</p>
 			<ul>
 				<?php foreach($mensagens_erro as $mensagem): ?>
 					<li><?= $mensagem ?></li>

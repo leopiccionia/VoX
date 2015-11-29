@@ -93,7 +93,6 @@ class Usuario extends Controller {
 		$query = mysqli_query($conexao, "SELECT * FROM usuario WHERE email = '{$this->email}' AND senha = '{$this->hash_senha}'");
 		if($row = mysqli_fetch_array($query))
 			$this->id = $row['usuario_id'];
-		
 		mysqli_close($conexao);
 		if($this->id == -1)
 			return false;
