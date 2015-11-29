@@ -35,7 +35,7 @@
         
         public function obterComentarios(){
             $conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
-            $query = mysqli_query($conexao, "SELECT c.id, c.conteudo, c.tipo, c.autor_id, u.nome as autor_nome FROM comentario INNER JOIN usuario u ON c.autor_id = u.if WHERE pauta_id = {$this->id}");
+            $query = mysqli_query($conexao, "SELECT c.comentario_id, c.conteudo, c.tipo, c.autor_id, u.nome as autor_nome FROM comentario INNER JOIN usuario u ON c.autor_id = u.usuario_id WHERE pauta_id = {$this->id}");
             $resultado = array();
             while($row = mysqli_fetch_array($query)){
                 $comentario = new Comentario();

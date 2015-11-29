@@ -4,8 +4,7 @@
 
     session_start();
 	
-    if(!isset($_SESSION['usuario']))
-    {
+    if(!isset($_SESSION['usuario'])){
 		header('Location: /index.php');
 		die();
 	}
@@ -14,11 +13,9 @@
     $erro_validacao = false;
     $erro_cadastro = false;
     
-    if($pauta->validar())
-    {
+    if($pauta->validar()){
         $pauta_id = $pauta->cadastrar($_SESSION['usuario']->id);
-        if($pauta_id > 0)
-        {
+        if($pauta_id > 0){
             $_SESSION['pauta'] = $pauta_id;
             //header('Location: /opcao_pauta.cadastro.php');
             //die();
