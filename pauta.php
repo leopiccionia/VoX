@@ -88,7 +88,7 @@ class Pauta extends Controller{
     function opcoes(){
         $opcoes = array();
         $conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha);
-        $query = mysqli_query($conexao, "SELECT opcao_id, titulo, descricao FROM opcao_pauta WHERE pauta_id = $id");
+        $query = mysqli_query($conexao, "SELECT opcao_id, titulo, descricao FROM opcao_pauta WHERE pauta_id = {$this->id}");
         while($row = mysqli_fetch_array($query)){
             $opcao = new OpcaoPauta();
             $opcao->id = $row['id'];
