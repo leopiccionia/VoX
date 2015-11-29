@@ -16,7 +16,7 @@
 	    <button type="button" class="close" data-dismiss="alert">
 	        <i class="glyphicon glyphicon-remove"></i>
 	    </button>
-	    <h2><?= $headerErro ?></h3>
+	    <h3><?= $headerErro ?></h3>
 	    <ul>
 	        <?php foreach ($_SESSION['erros_validacao'] as $erro): ?>
 	        	<li><?= $erro ?></li>

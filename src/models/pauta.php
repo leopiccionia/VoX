@@ -1,10 +1,11 @@
 <?php
 require_once APP_PATH . 'controller.php';
 require_once MODEL_PATH . 'usuario.php';
-//require_once MODEL_PATH . 'opcao_pauta.php';
+require_once MODEL_PATH . 'opcao_pauta.php';
 
 class Pauta extends Controller{
     
+    public $pauta_id;
     public $titulo;
     public $descricao;
     public $data_criacao;
@@ -48,20 +49,20 @@ class Pauta extends Controller{
         return -1;
     }
     
-    // public function opcoes(){
-    //     $opcoes = array();
-    //     $conexao = $this->abrir_conexao();
-    //     $query = mysqli_query($conexao, "SELECT opcao_id, titulo, descricao FROM opcao_pauta WHERE pauta_id = $id");
-    //     while($row = mysqli_fetch_array($query))
-    //     {
-    //         $opcao = new OpcaoPauta();
-    //         $opcao->id = $row['id'];
-    //         $opcao->titulo = $row['titulo'];
-    //         $opcao->descricao = $row['descricao'];
-    //         array_push($opcoes, $opcao);
-    //     }
-    //     return $opcoes;
-    // }
+    public function buscar_opcoes_pauta($id){
+        $opcoes = array();
+        $conexao = $this->abrir_conexao();
+        $query = mysqli_query($conexao, "SELECT opcao_id, titulo, descricao FROM opcao_pauta WHERE pauta_id = $id");
+        while($row = mysqli_fetch_array($query))
+        {
+            $opcao = new OpcaoPauta();
+            $opcao->id = $row['id'];
+            $opcao->titulo = $row['titulo'];
+            $opcao->descricao = $row['descricao'];
+            array_push($opcoes, $opcao);
+        }
+        return $opcoes;
+    }
 
     private function transformarStringEmData($data){
         $novoFormato = str_replace('/', '-', $data);

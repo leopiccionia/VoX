@@ -37,6 +37,10 @@ switch ($_SERVER['REQUEST_URI']) {
         require VIEW_PATH . 'opcao_pauta.php';
         break;
 
+    case '/cadastrar_opcao_pauta':
+        require CONTROLLER_PATH .  'opcao_pauta.php';
+        break;
+
     default:
         require VIEW_PATH . "index.php";
         break;
