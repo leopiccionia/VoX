@@ -28,7 +28,7 @@
                     <label for="descricao">Descrição</label>
                     <textarea rows="4" id="descricao" name="descricao" class="form-control" placeholder="Descrição da votação"></textarea>
                 </div>
-             	<input type="submit" class="btn btn-primary" value="Entrar">
+             	<button class="btn btn-primary">Cadastrar</button>
             </form>
     	</div>
     </body>

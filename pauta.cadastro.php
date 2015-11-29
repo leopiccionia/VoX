@@ -26,13 +26,13 @@
                 </div>
                 <div class="form-group">
                     <label for="data_inicio">Data de início</label>
-                    <input type="date" id="data_inicio" name="data_inicio" class="form-control" placeholder="YYYY-MM-DD" required />
+                    <input id="data_inicio" name="data_inicio" class="form-control datepicker" placeholder="DD-MM-YYYY" required />
                 </div>
                 <div class="form-group">
                     <label for="data_fim">Data de fim</label>
-                    <input type="date" id="data_fim" name="data_fim" class="form-control" placeholder="YYYY-MM-DD" required />
+                    <input id="data_fim" name="data_fim" class="form-control datepicker" placeholder="DD-MM-YYYY" required />
                 </div>
-            	<input type="submit" class="btn btn-primary" value="Entrar">
+            	<button class="btn btn-primary">Cadastrar</button>
             </form>
     	</div>
     </body>
