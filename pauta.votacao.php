@@ -31,6 +31,7 @@
     	            <?php if(isset($opcao->descricao)): ?>
     	                <p><?= $opcao->descricao ?></p>
     	            <?php endif; ?>
+    	            <p><a href="opcao_pauta.comentarios?id=<?= $opcao->id ?>"><?= $opcao->contarComentarios() ?> comentários</a></p>
     	        <?php endforeach; ?>
     	        <p><input type="radio" name="opcao" value="0" /> Abster-se</p>
     	        <input type="submit" value="Votar">

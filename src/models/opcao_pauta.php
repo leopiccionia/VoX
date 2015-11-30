@@ -1,5 +1,6 @@
 <?php
     require_once APP_PATH . 'controller.php';
+    require_once MODEL_PATH . 'comentario.php';
     
     class OpcaoPauta extends Controller{
         public $titulo;
@@ -22,4 +23,30 @@
                 return false;
             }
         }
+        
+        public function contarComentarios(){
+            $conexao = $this->abrir_conexao();
+            $query = mysqli_query($conexao, "SELECT COUNT(*) AS total FROM comentario WHERE pauta_id = {$this->pauta_id}");
+            $row = mysqli_fetch_assoc($query);
+            mysqli_close($conexao);
+            return $row['total'];
+        }
+        
+        public function obterComentarios(){
+            $conexao = $this->abrir_conexao();
+            $query = mysqli_query($conexao, "SELECT c.comentario_id, c.conteudo, c.tipo, c.autor_id, u.nome as autor_nome FROM comentario INNER JOIN usuario u ON c.autor_id = u.usuario_id WHERE pauta_id = {$this->pauta_id}");
+            $resultado = array();
+            while($row = mysqli_fetch_array($query)){
+                $comentario = new Comentario();
+                $comentario->id = $row['id'];
+                $comentario->autor_nome = $row['autor_nome'];
+                $comentario->autor = $row['autor_id'];
+                $comentario->conteudo = $row['conteudo'];
+                $comentario->tipo = $row['tipo'];
+                array_push($resultado, $comentario);
+            }
+            mysqli_close($conexao);
+            return $resultado;
+        }
+        
     }

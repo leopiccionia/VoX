@@ -7,6 +7,7 @@ CREATE TABLE usuario(
     email VARCHAR(50) NOT NULL,
     senha CHAR(40) NOT NULL,
     status CHAR(1) NOT NULL,
+    UNIQUE(email),
     PRIMARY KEY(usuario_id)
 );
 
@@ -16,6 +17,14 @@ CREATE TABLE usuario(
         V - verificado (apos verificacao de e-mail)
         R - removido
 */
+
+CREATE TABLE verificacao_usuario(
+    usuario_id INT NOT NULL,
+    codigo_verificaco CHAR(32) NOT NULL,
+    verificado BIT NOT NULL DEFAULT FALSE,
+    PRIMARY KEY(usuario_id),
+    FOREIGN KEY(usuario_id) REFERENCES usuario(usuario_id)
+)
 
 CREATE TABLE pauta(
     pauta_id INT NOT NULL AUTO_INCREMENT,

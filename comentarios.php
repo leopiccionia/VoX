@@ -4,8 +4,8 @@
 		header('Location: /index.php');
 		die();
 	}
-	require_once 'opcao_pauta.php';
-	require_once 'comentario.php';
+	require_once MODEL_PATH . 'opcao_pauta.php';
+	require_once MODEL_PATH . 'comentario.php';
     $opcao_pauta = new OpcaoPauta();
     $opcao_pauta->id = $_GET['id'];
     $comentarios = $opcao_pauta->obterComentarios();
@@ -44,7 +44,7 @@
                 </div>
     	    <?php endforeach; ?>
     	    <h2>Inserir novo comentário</h2>
-    	    <form method="post" action="opcao_pauta.comentarios1.php">
+    	    <form method="post" action="comentarios1.php">
     	        <input type="hidden" name="opcao_pauta" id="opcao_pauta" value="<?= $_GET['id'] ?>" />
     	        <div class="form-group">
     	           <label for="tipo">Tipo</label>

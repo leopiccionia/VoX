@@ -1,6 +1,6 @@
 <?php
-    require_once 'comentario.php';
-    require_once 'usuario.php';
+    require_once MODEL_PATH . 'comentario.php';
+    require_once MODEL_PATH . 'usuario.php';
 
     session_start();
 	
@@ -20,7 +20,7 @@
     
     if($comentario->validar()){
         if($comentario->cadastrar()){
-            header('Location: /opcao_pauta.comentarios.php?id=' .$_POST['opcao_pauta']);
+            header('Location: /comentarios.php?id=' .$_POST['opcao_pauta']);
             die();
         }
         else
@@ -40,9 +40,9 @@
     	<div class="container main-container">
     		<h1>Inserção de comentário</h1>
     		<?php if($erro_validacao): ?>
-    		    <p>Erro de validação. <a href="opcao_pauta.comentarios.php">Tente novamente</a>.</p>
+    		    <p>Erro de validação. <a href="comentarios.php">Tente novamente</a>.</p>
     	    <?php elseif($erro_cadastro): ?>
-    	        <p>Não foi possível cadastrar o comentário. <a href="opcao_pauta.comentarios.php">Tente novamente</a>.</p>
+    	        <p>Não foi possível cadastrar o comentário. <a href="comentarios.php">Tente novamente</a>.</p>
     	    <?php endif; ?>
     	</div>
     </body>
