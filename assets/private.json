@@ -9,9 +9,9 @@
 	},
 	"prod" : {
 	    "database":{
-	        "server":"localhost",
-	        "username":"will",
-	        "password":"teste",
+	        "server":"tryvox.tk",
+	        "username":"dev",
+	        "password":"dumbbabies",
 	        "name": "vox"
 	    }
 	}
