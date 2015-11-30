@@ -11,6 +11,6 @@
 	    <button type="button" class="close" data-dismiss="alert">
 	        <i class="glyphicon glyphicon-remove"></i>
 	    </button>
-	    <h2><?php $success_message; ?></h2>
+	    <h2><?= $success_message; ?></h2>
 	</div>		
 <?php endif; unset($_SESSION['success']); ?>

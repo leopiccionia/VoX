@@ -6,7 +6,7 @@
 		<div>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="/pauta">Nova pauta</a></li>
-				<li><a href="logoff.php">Sair</a></li>
+				<li><a href="/logoff">Sair</a></li>
 			</ul>
 		</div>
 	</div>

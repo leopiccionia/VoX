@@ -21,6 +21,11 @@ switch ($_SERVER['REQUEST_URI']) {
         require CONTROLLER_PATH . 'login.php';
         break;
     
+    case '/logoff':
+        require APP_PATH . 'logoff.php';
+        break;
+
+
     case '/home':
     	require VIEW_PATH . 'home.php';
     	break;
