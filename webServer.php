@@ -22,3 +22,5 @@ if (preg_match('/\.css|\.js|\.jpg|\.png|\.map$/', $_SERVER['REQUEST_URI'], $matc
 }
 
 require 'bootstrap.php';
+
+?>
