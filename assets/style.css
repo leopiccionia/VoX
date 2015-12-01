@@ -41,3 +41,23 @@ body{
 #ui-datepicker-div{
 	width: inherit;
 }
+
+form{
+	margin-bottom: 20px;
+}
+
+.container{
+	border-radius: 10px;
+}
+
+div.pesquisa-rapida{
+	padding-top: 10px;
+}
+
+.pesquisa-rapida > .form-inline{
+	margin-bottom: 0px;
+}
+
+.pesquisa-rapida > .form-inline button{
+	width: inherit;
+}

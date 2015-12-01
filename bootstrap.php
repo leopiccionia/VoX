@@ -46,6 +46,14 @@ switch ($_SERVER['REQUEST_URI']) {
         require CONTROLLER_PATH .  'opcao_pauta.php';
         break;
 
+    case '/pesquisar':
+        require VIEW_PATH . 'pesquisa.php';
+        break;
+
+    case '/pesquisar_pauta':
+        require CONTROLLER_PATH . 'pesquisa.php';
+        break;
+
     default:
         require VIEW_PATH . "index.php";
         break;
