@@ -66,5 +66,27 @@ class Usuario extends Controller{
 		}
 		return false;
 	}
+
+	public static function nomeDoId($id){
+		
+        $db_file = file_get_contents(APP_PATH . 'assets/private.json');
+        $db_json = json_decode($db_file, true);
+
+        $db_servidor = $db_json[ENV]['database']['server'];
+        $db_usuario = $db_json[ENV]['database']['username'];
+        $db_senha = $db_json[ENV]['database']['password'];
+        $db_nome = $db_json[ENV]['database']['name'];
+
+        $conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha, $db_nome);
+		$query = mysqli_query($conexao, "SELECT nome FROM usuario WHERE usuario_id = {$id}");
+		mysqli_close($conexao);
+		
+		if($row = mysqli_fetch_array($query))
+		{
+			$nome = $row['nome'];
+			return $nome;	
+		}
+		return null;
+	}   
 }
 

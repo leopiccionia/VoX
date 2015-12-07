@@ -75,9 +75,12 @@ div.pesquisa-rapida{
 	font-size: 18px;
 }
 
-.lista-pautas > ul > li.item-lista-pautas > div > a{
+.lista-pautas > ul > li.item-lista-pautas > div > form{
 	float: right;
 	margin-right: 2%;
+}
+.lista-pautas > ul > li.item-lista-pautas > div > form > button{
+	width: inherit;
 }
 
 .lista-pautas > ul > li.item-lista-pautas > div.descricao-pauta{

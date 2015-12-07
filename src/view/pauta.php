@@ -1,4 +1,4 @@
-<?php require COMMOM_PATH . 'user_logged_confirmation.php' ?>
+<?php require COMMOM_PATH . 'user_logged_confirmation.php'; $jessica = 10; ?>
 <!DOCTYPE html>
 <html>
 	<head>

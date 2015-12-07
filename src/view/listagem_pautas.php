@@ -29,7 +29,10 @@
 							<li class="item-lista-pautas">
 								<div>
 									<span class="titulo-pauta"><?= $contador++ . '. ' . $pauta->titulo; ?></span>
-									<a class="btn btn-success" href="<?= "/pauta/" . $pauta->pauta_id ?>">Detalhes</a>
+									<form method="post" action="/votacao">
+										<input type="hidden" value="<?= $pauta->pauta_id; ?>" name="pauta_id" id="pauta_id"/>
+										<button class="btn btn-success">Detalhes</button>
+									</form>
 								</div>
 								<div class="descricao-pauta">
 									<span><?= $pauta->descricao; ?></span>

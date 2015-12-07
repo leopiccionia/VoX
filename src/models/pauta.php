@@ -53,10 +53,8 @@ class Pauta extends Controller{
         $query = mysqli_query($conexao, "SELECT opcao_id, titulo, descricao FROM opcao_pauta WHERE pauta_id = $id");
         while($row = mysqli_fetch_array($query))
         {
-            $opcao = new OpcaoPauta();
-            $opcao->id = $row['id'];
-            $opcao->titulo = $row['titulo'];
-            $opcao->descricao = $row['descricao'];
+            $opcao = new OpcaoPauta($row['titulo'], $row['descricao'], $id);
+            $opcao->id = $row['opcao_id'];
             array_push($opcoes, $opcao);
         }
         return $opcoes;
@@ -65,5 +63,30 @@ class Pauta extends Controller{
     private function transformarStringEmData($data){
         $novoFormato = str_replace('/', '-', $data);
         return date('Y-m-d', strtotime($novoFormato));
+    }
+
+    public static function encontrar_pauta_por_id($id){
+
+        $db_file = file_get_contents(APP_PATH . 'assets/private.json');
+        $db_json = json_decode($db_file, true);
+
+        $db_servidor = $db_json[ENV]['database']['server'];
+        $db_usuario = $db_json[ENV]['database']['username'];
+        $db_senha = $db_json[ENV]['database']['password'];
+        $db_nome = $db_json[ENV]['database']['name'];
+
+        $conexao = mysqli_connect($db_servidor, $db_usuario, $db_senha, $db_nome);
+        $query = mysqli_query($conexao, "SELECT * FROM pauta WHERE pauta_id = $id");
+
+        if($row = mysqli_fetch_array($query))
+        {
+            $pauta = new Pauta($row['titulo'], $row['descricao'], $row['data_inicio'], $row['data_fim'], $row['pauta_id']);
+            $pauta->data_criacao = $row['data_criacao'];
+
+            return $pauta;
+        }
+        
+
+        return null;
     }
 }

@@ -3,6 +3,7 @@
     require_once MODEL_PATH . 'comentario.php';
     
     class OpcaoPauta extends Controller{
+        public $id;
         public $titulo;
         public $descricao;
         public $pauta_id;
@@ -26,10 +27,13 @@
         
         public function contarComentarios(){
             $conexao = $this->abrir_conexao();
-            $query = mysqli_query($conexao, "SELECT COUNT(*) AS total FROM comentario WHERE pauta_id = {$this->pauta_id}");
-            $row = mysqli_fetch_assoc($query);
+            $query = mysqli_query($conexao, "SELECT COUNT(*) AS total FROM comentario WHERE opcao_id = {$this->id}");
             mysqli_close($conexao);
-            return $row['total'];
+
+            if($row = mysqli_fetch_array($query))
+                return $row['total'];
+                
+            return 0;        
         }
         
         public function obterComentarios(){

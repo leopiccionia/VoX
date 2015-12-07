@@ -53,8 +53,11 @@ CREATE TABLE comentario(
     conteudo TEXT NOT NULL,
     tipo CHAR(1) NOT NULL,
     curtidas INT NOT NULL,
+    opcao_id INT NOT NULL,
     PRIMARY KEY(comentario_id),
-    FOREIGN KEY(autor_id) REFERENCES usuario(usuario_id)
+    FOREIGN KEY(autor_id) REFERENCES usuario(usuario_id),
+    FOREIGN KEY(opcao_id) REFERENCES opcao_pauta(opcao_id)
+
 );
 
 CREATE TABLE voto(

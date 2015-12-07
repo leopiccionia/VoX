@@ -58,6 +58,10 @@ switch ($_SERVER['REQUEST_URI']) {
         require VIEW_PATH . 'listagem_pautas.php';
         break;
 
+    case '/votacao':
+        require 'pauta.votacao.php';
+        break;
+
      default:
          require VIEW_PATH . "index.php";
          break;

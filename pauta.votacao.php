@@ -1,15 +1,12 @@
 <?php
-	session_start();
-	if(!isset($_SESSION['usuario'])){
-		header('Location: /index.php');
-		die();
-	}
-	require_once 'pauta.php';
-	require_once 'usuario.php';
-	require_once 'opcao_pauta.php';
+	require_once MODEL_PATH . 'pauta.php';
+	require_once MODEL_PATH . 'usuario.php';
+	require_once MODEL_PATH . 'opcao_pauta.php';
+    require_once USER_LOGGED;
 	
-	$pauta = new Pauta($_POST['pauta_id']);
-	$opcoes = $pauta->opcoes();
+	$pauta = Pauta::encontrar_pauta_por_id($_POST['pauta_id']);
+	$opcoes = $pauta->buscar_opcoes_pauta($pauta->pauta_id);
+    $myDateTime = DateTime::createFromFormat('Y-m-d', $pauta->data_criacao);
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +19,7 @@
     	<div class="container main-container">
     	    <h1><?= $pauta->titulo ?></h1>
     	    <p style="font-size: large;"><?= $pauta->descricao ?></p>
-    	    <p>Pauta criada por <?= Usuario::nomeDoId($pauta->autor) ?> em <?= date_format($pauta->data_criacao, 'd/m/Y') ?>.</p>
+    	    <p>Pauta criada por <?= Usuario::nomeDoId($pauta->autor) ?> em <?= $myDateTime->format('d/m/Y') ?>.</p>
     	    <form action="pauta.votacao1.php" method="post">
     	        <h2>Opções</h2>
     	        <input type="hidden" name="pauta" id="pauta" value="<?= $pauta->id ?>" />
