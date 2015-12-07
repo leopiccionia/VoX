@@ -7,6 +7,7 @@
 </head>
 <body>
 	<?php require ASSETS_PATH . 'navbar.php' ?>
+    <?php require COMMOM_PATH . 'error_message.php'; ?>
 	<div class="container main-container">
 		<!-- COMPLETAR -->
 	</div>

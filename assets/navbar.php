@@ -4,9 +4,9 @@
 			<a class="navbar-brand" href="index.php">✔o✘</a>
 		</div>
 		<div class="nav navbar-nav pesquisa-rapida">
-			<form class="form-inline" action="pesquisa_pauta" method="POST">
+			<form class="form-inline" action="/pesquisar_pauta" method="POST">
 				<div class="form-group">
-				    <input type="text" class="form-control" id="query_parcial" placeholder="Título parcial ou integral">
+				    <input type="text" class="form-control" id="query_parcial" name="query_parcial" placeholder="Título parcial ou integral">
 			  	</div>
 				  <button type="submit" class="btn btn-secondary">Buscar pauta</button>
 			</form>

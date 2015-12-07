@@ -8,6 +8,7 @@ define('CONTROLLER_PATH', APP_PATH . 'src/controllers/');
 define('MODEL_PATH', APP_PATH . 'src/models/');
 define('VALIDATORS_PATH', APP_PATH . 'src/validators/');
 define('USER_LOGGED', COMMOM_PATH . 'user_logged_confirmation.php');
+define('JS_PATH', ASSETS_PATH . 'js/');
 
 define('ENV', (strpos($_SERVER['HTTP_HOST'], 'localhost') === false)? 'prod' : 'local');
 
@@ -24,7 +25,6 @@ switch ($_SERVER['REQUEST_URI']) {
     case '/logoff':
         require APP_PATH . 'logoff.php';
         break;
-
 
     case '/home':
     	require VIEW_PATH . 'home.php';
@@ -54,7 +54,11 @@ switch ($_SERVER['REQUEST_URI']) {
         require CONTROLLER_PATH . 'pesquisa.php';
         break;
 
-    default:
-        require VIEW_PATH . "index.php";
+    case '/listagem_pautas': 
+        require VIEW_PATH . 'listagem_pautas.php';
         break;
+
+     default:
+         require VIEW_PATH . "index.php";
+         break;
 }

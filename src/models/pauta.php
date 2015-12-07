@@ -13,12 +13,10 @@ class Pauta extends Controller{
     public $data_fim;
     public $autor;
         
-    function __construct($titulo, $descricao, $data_inicio, $data_fim, $data_criacao = null){
+    function __construct($titulo, $descricao, $data_inicio, $data_fim, $pauta_id = null){
         parent::__construct();
 
-        if($data_criacao == null)
-            $this->data_criacao = time();
-
+        $this->pauta_id = $pauta_id;
         $this->titulo = mysql_real_escape_string($titulo);
         $this->descricao = mysql_real_escape_string($descricao);
 
