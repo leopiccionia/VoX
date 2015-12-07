@@ -50,7 +50,7 @@ class Query extends Controller{
 		if($this->titulo)
 		{
 			$this->verifica_necessidade_comando_AND();
-			$this->clausula_where_query .= " titulo='{$this->titulo}'";				
+			$this->clausula_where_query .= " titulo LIKE '%{$this->titulo}%'";				
 		}
 	}
 

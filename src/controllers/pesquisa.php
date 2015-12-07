@@ -4,9 +4,14 @@
 	require USER_LOGGED;
 
 	if(isset($_POST['query_parcial']))
+	{
 		$pesquisador = new Query($_POST['query_parcial']);
+	}
 	else
+	{
 		$pesquisador = new Query($_POST['titulo'], $_POST['data_inicio'], $_POST['data_fim']);
+	}
+
 
 	$validador = new PesquisaValidator($pesquisador);
 	$erros_validacao = $validador->validar_informacoes();

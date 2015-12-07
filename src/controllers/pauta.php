@@ -3,8 +3,6 @@
     require_once VALIDATORS_PATH . 'pautaValidator.php';
     require_once USER_LOGGED;
 
-    session_start();
-	
     $pauta = new Pauta($_POST['titulo'], $_POST['descricao'], $_POST['data_inicio'], $_POST['data_fim']);
     $validator = new PautaValidator($pauta);
 
@@ -12,6 +10,7 @@
     
     if(empty($erros_validacao))
     {
+
         if($pauta->cadastrar())
         {
             $_SESSION['pauta'] = $pauta->buscar_mais_recente();

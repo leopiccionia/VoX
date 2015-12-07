@@ -17,7 +17,7 @@
     {
 		if($opcao_pauta->cadastrar())
 	    {
-	    	$_SESSION['success'] = 'Opção de pauta salta com sucesso!';
+	    	$_SESSION['success'] = 'Opção de pauta salva com sucesso!';
 	    	header('Location: /opcao_pauta');
 	        die();
 	    }

@@ -19,7 +19,7 @@
         <?php require COMMOM_PATH . 'error_message.php' ?>
         <?php require COMMOM_PATH . 'success_register.php' ?>
     	<div class="container main-container">
-            <h1>Cadastro de pauta</h1>
+            <h1>Cadastro de opções da pauta</h1>
             <form action="/cadastrar_opcao_pauta" method="post">
                 <div class="form-group">
                     <label for="titulo">Título [obrigatório]</label>

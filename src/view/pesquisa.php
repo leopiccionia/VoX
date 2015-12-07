@@ -13,8 +13,8 @@
             <form action="/pesquisar_pauta" method="post">
                 <div class="form-group row">
                     <div class="col-sm-12">
-                        <label for="descricao">Título</label>
-                        <input type="text" id="descricao" name="descricao" class="form-control" placeholder="Parte ou título inteiro da pauta" />
+                        <label for="tiulo">Título</label>
+                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Parte ou título inteiro da pauta" />
                     </div>
                 </div>
                 <div class="form-group row">

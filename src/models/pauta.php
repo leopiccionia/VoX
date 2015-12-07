@@ -23,7 +23,7 @@ class Pauta extends Controller{
         $this->data_inicio = $this->transformarStringEmData($data_inicio);
         $this->data_fim = $this->transformarStringEmData($data_fim);
 
-        $this->autor = (int)$_SESSION['usuario']->id;
+        $this->autor = (int)$_SESSION['usuario']->get_id();
     }
     
     public function cadastrar(){

@@ -3,6 +3,7 @@
 	require COMMOM_PATH . 'user_logged_confirmation.php';
 
 	$lista_vazia = false;
+	$contador = 1;
 
 	if(!isset($_SESSION['lista_pautas']) || (empty($_SESSION['lista_pautas'])))
 		$lista_vazia = true;
@@ -27,7 +28,7 @@
 						<ul>
 							<li class="item-lista-pautas">
 								<div>
-									<span class="titulo-pauta"><?= $pauta->titulo; ?></span>
+									<span class="titulo-pauta"><?= $contador++ . '. ' . $pauta->titulo; ?></span>
 									<a class="btn btn-success" href="<?= "/pauta/" . $pauta->pauta_id ?>">Detalhes</a>
 								</div>
 								<div class="descricao-pauta">
